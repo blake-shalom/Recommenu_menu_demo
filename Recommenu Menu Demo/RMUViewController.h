@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RMUViewController : UIViewController
+<UITableViewDataSource, UITableViewDelegate>
+
 
 @end

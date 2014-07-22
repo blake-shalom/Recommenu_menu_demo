@@ -26,4 +26,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITableView DataSource methods
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+#pragma mark - UITableView Delegate methods
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
+}
+
 @end
