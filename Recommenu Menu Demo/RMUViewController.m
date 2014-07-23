@@ -10,6 +10,8 @@
 
 @interface RMUViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *menuTable;
+
 @end
 
 @implementation RMUViewController
@@ -17,7 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.view setBackgroundColor:[UIColor RMUSpringWood]];
+    [self.menuTable setBackgroundColor:[UIColor RMUSpringWood]];
+    [self.menuTable setSeparatorColor:[UIColor RMUSpringWood]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,18 +30,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 #pragma mark - UITableView DataSource methods
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 2;
 }
 
 #pragma mark - UITableView Delegate methods
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
+    RMUMenuTableViewCell *menuCell = (RMUMenuTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
+    [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:(indexPath.row + 1) * 5];
+    return menuCell;
 }
+
+
 
 @end

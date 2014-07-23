@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A6ECC825-0965-4057-9AB2-659D037C0790</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Recommenu Menu Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>363DC851-F088-4D9C-863A-BC5697BD6556</key>
+		<string>https://bitbucket.org/Recommenu-Dev/recommenu-mobile-demo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Recommenu Menu Demo.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>363DC851-F088-4D9C-863A-BC5697BD6556</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/Recommenu-Dev/recommenu-mobile-demo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>363DC851-F088-4D9C-863A-BC5697BD6556</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>363DC851-F088-4D9C-863A-BC5697BD6556</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Recommenu Menu Demo</string>
+		</dict>
+	</array>
+</dict>
+</plist>

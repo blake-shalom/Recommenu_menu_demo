@@ -8,7 +8,7 @@
 
 #import "RMUSlider.h"
 
-#define HEIGHT_OF_SLIDER 20.0f
+#define HEIGHT_OF_SLIDER 15.0f
 
 @implementation RMUSlider
 
@@ -16,7 +16,31 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.layer.borderColor =[UIColor grayColor].CGColor;
+        self.layer.borderWidth = 1.0f;
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        CGRect newFrame = self.frame;
+        newFrame.origin.x = newFrame.origin.x;
+        self.layer.borderColor =[UIColor lightGrayColor].CGColor;
+        self.layer.borderWidth = 1.0f;
+        self.layer.cornerRadius = 6;
+        self.layer.masksToBounds = YES;
+        [self setThumbImage:[[UIImage alloc]init] forState:UIControlStateNormal];
+        CGRect rect = CGRectMake(0, 0, 1, 1);
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+        [[UIColor RMUBlueChill] setFill];
+        UIRectFill(rect);
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [self setMinimumTrackImage:image forState:UIControlStateNormal];
+        [self setMaximumTrackTintColor:[UIColor whiteColor]];
     }
     return self;
 }
@@ -25,15 +49,11 @@
 {
     CGRect result = [super trackRectForBounds:bounds];
     result.size.height = HEIGHT_OF_SLIDER;
+    result.origin.x -= 2.0f;
+    result.size.width += 2.0f;
     return result;
 }
 
-- (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value
-{
-    CGRect result = [super thumbRectForBounds:bounds trackRect:rect value:value];
-    result.size.width = 16.0f;
-    return result;
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

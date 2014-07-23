@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMUMenuTableViewCell.h"
 
 @interface RMUViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate>

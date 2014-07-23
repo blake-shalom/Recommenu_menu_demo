@@ -14,6 +14,21 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
+
+        // Initialization code
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.layer.cornerRadius = 5;
+        self.layer.masksToBounds = YES;
+
         // Initialization code
     }
     return self;
@@ -22,6 +37,7 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
