@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RMUSlider.h"
 #import "RMUCurvedButton.h"
+#import "RMUCommentField.h"
 
 @interface RMUSubmitReviewView : UIView
 
@@ -17,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet RMUSlider *bottomFoodSlider;
 @property (weak, nonatomic) IBOutlet RMUCurvedButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIView *visibleView;
+@property (weak, nonatomic) IBOutlet RMUCommentField *commentTextField;
 
 @end

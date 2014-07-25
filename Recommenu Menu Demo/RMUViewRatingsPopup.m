@@ -54,6 +54,16 @@
     [self.mostRecentButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
     [self.mostRecentButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
 }
+
+- (IBAction)upvoteRecommendation:(id)sender
+{
+    
+}
+
+- (IBAction)downvoteRecommendation:(id)sender
+{
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

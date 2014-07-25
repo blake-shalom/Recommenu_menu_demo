@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8311891278EB4A6C85198E19 /* libPods-Recommenu Menu Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 289C1CE11BDE4534A47E4BD0 /* libPods-Recommenu Menu Demo.a */; };
+		9D067CAD1982E05400B7DB1D /* RMUCommentField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CAC1982E05400B7DB1D /* RMUCommentField.m */; };
+		9D067CB01982F3B500B7DB1D /* RMUTopCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */; };
 		9DE124331979922F006C185B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124321979922F006C185B /* Foundation.framework */; };
 		9DE124351979922F006C185B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124341979922F006C185B /* CoreGraphics.framework */; };
 		9DE124371979922F006C185B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124361979922F006C185B /* UIKit.framework */; };
@@ -47,6 +49,10 @@
 /* Begin PBXFileReference section */
 		289C1CE11BDE4534A47E4BD0 /* libPods-Recommenu Menu Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recommenu Menu Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF221DBF90D4F869B75803F /* Pods-Recommenu Menu Demo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommenu Menu Demo.xcconfig"; path = "Pods/Pods-Recommenu Menu Demo.xcconfig"; sourceTree = "<group>"; };
+		9D067CAB1982E05400B7DB1D /* RMUCommentField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUCommentField.h; sourceTree = "<group>"; };
+		9D067CAC1982E05400B7DB1D /* RMUCommentField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUCommentField.m; sourceTree = "<group>"; };
+		9D067CAE1982F3B500B7DB1D /* RMUTopCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUTopCommentView.h; sourceTree = "<group>"; };
+		9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUTopCommentView.m; sourceTree = "<group>"; };
 		9DE1242F1979922F006C185B /* Recommenu Menu Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recommenu Menu Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE124321979922F006C185B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE124341979922F006C185B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -154,6 +160,10 @@
 				9DE124421979922F006C185B /* RMUAppDelegate.m */,
 				9DE124441979922F006C185B /* Main_iPhone.storyboard */,
 				9DE124471979922F006C185B /* Main_iPad.storyboard */,
+				9D067CAE1982F3B500B7DB1D /* RMUTopCommentView.h */,
+				9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */,
+				9D067CAB1982E05400B7DB1D /* RMUCommentField.h */,
+				9D067CAC1982E05400B7DB1D /* RMUCommentField.m */,
 				9DEF7F221981C1DF000EB421 /* RMUSubmitReviewView.h */,
 				9DEF7F231981C1DF000EB421 /* RMUSubmitReviewView.m */,
 				9DEF7F1C19808A91000EB421 /* RMUViewRatingsPopup.h */,
@@ -349,10 +359,12 @@
 				9DEF7F211981A285000EB421 /* RMUClickableStarView.m in Sources */,
 				9DEF7F241981C1DF000EB421 /* RMUSubmitReviewView.m in Sources */,
 				9DE1244C1979922F006C185B /* RMUViewController.m in Sources */,
+				9D067CAD1982E05400B7DB1D /* RMUCommentField.m in Sources */,
 				9DE124431979922F006C185B /* RMUAppDelegate.m in Sources */,
 				9DE1246F197DA67E006C185B /* RMUMenuTableViewCell.m in Sources */,
 				9DEF7F1619802551000EB421 /* UIColor+RMUDemoColors.m in Sources */,
 				9DEF7F271981DAC6000EB421 /* RMUCurvedButton.m in Sources */,
+				9D067CB01982F3B500B7DB1D /* RMUTopCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
