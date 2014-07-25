@@ -8,6 +8,16 @@
 
 #import "RMUViewRatingsPopup.h"
 
+@interface RMUViewRatingsPopup()
+
+@property (weak,nonatomic) IBOutlet UITableView *ratingsTable;
+@property (weak,nonatomic) IBOutlet UILabel *popupTitle;
+@property (weak,nonatomic) IBOutlet UIButton *mostRecentButton;
+@property (weak,nonatomic) IBOutlet UIButton *highestRatedButton;
+
+
+@end
+
 @implementation RMUViewRatingsPopup
 
 - (id)initWithFrame:(CGRect)frame
@@ -27,6 +37,22 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [tableView dequeueReusableCellWithIdentifier:@"ratingCell"];
+}
+
+- (IBAction)mostRecentSelected:(id)sender
+{
+    [self.mostRecentButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
+    [self.mostRecentButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+    [self.highestRatedButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [self.highestRatedButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+}
+
+- (IBAction)highestRatedSelected:(id)sender
+{
+    [self.highestRatedButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
+    [self.highestRatedButton setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+    [self.mostRecentButton.titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
+    [self.mostRecentButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

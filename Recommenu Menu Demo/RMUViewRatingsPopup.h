@@ -10,4 +10,6 @@
 
 @interface RMUViewRatingsPopup : UIView
 <UITableViewDataSource, UITableViewDelegate>
+
+
 @end

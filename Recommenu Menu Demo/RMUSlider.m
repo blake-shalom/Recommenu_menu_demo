@@ -10,6 +10,12 @@
 
 #define HEIGHT_OF_SLIDER 15.0f
 
+@interface RMUSlider()
+
+@property CGFloat sliderHeight;
+
+@end
+
 @implementation RMUSlider
 
 - (id)initWithFrame:(CGRect)frame
@@ -26,13 +32,12 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        CGRect newFrame = self.frame;
-        newFrame.origin.x = newFrame.origin.x;
         self.layer.borderColor =[UIColor lightGrayColor].CGColor;
         self.layer.borderWidth = 1.0f;
         self.layer.cornerRadius = 6;
         self.layer.masksToBounds = YES;
         [self setThumbImage:[[UIImage alloc]init] forState:UIControlStateNormal];
+        self.sliderHeight = HEIGHT_OF_SLIDER;
         CGRect rect = CGRectMake(0, 0, 1, 1);
         UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
         [[UIColor RMUBlueChill] setFill];
@@ -48,7 +53,7 @@
 - (CGRect)trackRectForBounds:(CGRect)bounds
 {
     CGRect result = [super trackRectForBounds:bounds];
-    result.size.height = HEIGHT_OF_SLIDER;
+    result.size.height = self.sliderHeight;
     result.origin.x -= 2.0f;
     result.size.width += 2.0f;
     return result;

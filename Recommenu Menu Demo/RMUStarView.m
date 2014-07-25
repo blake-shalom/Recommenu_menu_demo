@@ -23,13 +23,16 @@
 {
     for (UIView *subview in self.subviews) {
         UIImageView *imageView = (UIImageView*)subview;
-        if (subview.tag <= numberOfHalfStars / 2) {
-            if ((numberOfHalfStars % 2 == 1) && (subview.tag == numberOfHalfStars / 2 + 1)) {
-                // Make it a half star
+        if (subview.tag < numberOfHalfStars / 2) {
+            // Make it a full star
+            imageView.image = [UIImage imageNamed:@"little27y"];
+        }
+        else if (subview.tag == numberOfHalfStars / 2) {
+            if (numberOfHalfStars % 2 == 1) {
+                imageView.image = [UIImage imageNamed:@"halfstar"];
             }
             else {
-                // Make it a full star
-                imageView.image = [UIImage imageNamed:@"little27y"];
+                imageView.image = [UIImage imageNamed:@"little27g"];
             }
         }
         else {

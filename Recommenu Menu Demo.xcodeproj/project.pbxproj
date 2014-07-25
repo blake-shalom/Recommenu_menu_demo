@@ -29,6 +29,9 @@
 		9DEF7F1819802B73000EB421 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DEF7F1719802B73000EB421 /* QuartzCore.framework */; };
 		9DEF7F1B19804BE5000EB421 /* RMUStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF7F1A19804BE5000EB421 /* RMUStarView.m */; };
 		9DEF7F1E19808A91000EB421 /* RMUViewRatingsPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF7F1D19808A91000EB421 /* RMUViewRatingsPopup.m */; };
+		9DEF7F211981A285000EB421 /* RMUClickableStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF7F201981A285000EB421 /* RMUClickableStarView.m */; };
+		9DEF7F241981C1DF000EB421 /* RMUSubmitReviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF7F231981C1DF000EB421 /* RMUSubmitReviewView.m */; };
+		9DEF7F271981DAC6000EB421 /* RMUCurvedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DEF7F261981DAC6000EB421 /* RMUCurvedButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,12 @@
 		9DEF7F1A19804BE5000EB421 /* RMUStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUStarView.m; sourceTree = "<group>"; };
 		9DEF7F1C19808A91000EB421 /* RMUViewRatingsPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUViewRatingsPopup.h; sourceTree = "<group>"; };
 		9DEF7F1D19808A91000EB421 /* RMUViewRatingsPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUViewRatingsPopup.m; sourceTree = "<group>"; };
+		9DEF7F1F1981A285000EB421 /* RMUClickableStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUClickableStarView.h; sourceTree = "<group>"; };
+		9DEF7F201981A285000EB421 /* RMUClickableStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUClickableStarView.m; sourceTree = "<group>"; };
+		9DEF7F221981C1DF000EB421 /* RMUSubmitReviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUSubmitReviewView.h; sourceTree = "<group>"; };
+		9DEF7F231981C1DF000EB421 /* RMUSubmitReviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUSubmitReviewView.m; sourceTree = "<group>"; };
+		9DEF7F251981DAC6000EB421 /* RMUCurvedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUCurvedButton.h; sourceTree = "<group>"; };
+		9DEF7F261981DAC6000EB421 /* RMUCurvedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUCurvedButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,12 +154,18 @@
 				9DE124421979922F006C185B /* RMUAppDelegate.m */,
 				9DE124441979922F006C185B /* Main_iPhone.storyboard */,
 				9DE124471979922F006C185B /* Main_iPad.storyboard */,
+				9DEF7F221981C1DF000EB421 /* RMUSubmitReviewView.h */,
+				9DEF7F231981C1DF000EB421 /* RMUSubmitReviewView.m */,
 				9DEF7F1C19808A91000EB421 /* RMUViewRatingsPopup.h */,
 				9DEF7F1D19808A91000EB421 /* RMUViewRatingsPopup.m */,
+				9DEF7F1F1981A285000EB421 /* RMUClickableStarView.h */,
+				9DEF7F201981A285000EB421 /* RMUClickableStarView.m */,
 				9DEF7F1919804BE5000EB421 /* RMUStarView.h */,
 				9DEF7F1A19804BE5000EB421 /* RMUStarView.m */,
 				9DEF7F1419802551000EB421 /* UIColor+RMUDemoColors.h */,
 				9DEF7F1519802551000EB421 /* UIColor+RMUDemoColors.m */,
+				9DEF7F251981DAC6000EB421 /* RMUCurvedButton.h */,
+				9DEF7F261981DAC6000EB421 /* RMUCurvedButton.m */,
 				9DE1246A197DA641006C185B /* RMUSlider.h */,
 				9DE1246B197DA641006C185B /* RMUSlider.m */,
 				9DE1244A1979922F006C185B /* RMUViewController.h */,
@@ -331,10 +346,13 @@
 				9DEF7F1B19804BE5000EB421 /* RMUStarView.m in Sources */,
 				9DE1246C197DA641006C185B /* RMUSlider.m in Sources */,
 				9DEF7F1E19808A91000EB421 /* RMUViewRatingsPopup.m in Sources */,
+				9DEF7F211981A285000EB421 /* RMUClickableStarView.m in Sources */,
+				9DEF7F241981C1DF000EB421 /* RMUSubmitReviewView.m in Sources */,
 				9DE1244C1979922F006C185B /* RMUViewController.m in Sources */,
 				9DE124431979922F006C185B /* RMUAppDelegate.m in Sources */,
 				9DE1246F197DA67E006C185B /* RMUMenuTableViewCell.m in Sources */,
 				9DEF7F1619802551000EB421 /* UIColor+RMUDemoColors.m in Sources */,
+				9DEF7F271981DAC6000EB421 /* RMUCurvedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

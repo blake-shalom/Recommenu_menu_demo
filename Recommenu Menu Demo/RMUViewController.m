@@ -39,7 +39,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 10;
 }
 
 #pragma mark - UITableView Delegate methods
@@ -47,7 +47,7 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RMUMenuTableViewCell *menuCell = (RMUMenuTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
-    [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:(indexPath.row + 1) * 5];
+    [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:(indexPath.row)];
     return menuCell;
 }
 
