@@ -10,5 +10,4 @@
 
 @interface RMUSlider : UISlider
 
-
 @end

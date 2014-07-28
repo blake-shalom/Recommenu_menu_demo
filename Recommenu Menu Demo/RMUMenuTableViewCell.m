@@ -28,7 +28,7 @@
     if (self) {
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
-
+        self.isTopCommentVisible = NO;
         // Initialization code
     }
     return self;
@@ -45,6 +45,16 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)topCommentButtonPressed:(id)sender
+{
+    if (self.isTopCommentVisible){
+        [self.topCommentView setHidden:YES];
+    }
+    else {
+        [self.topCommentView setHidden:NO];
+    }
+    self.isTopCommentVisible = !self.isTopCommentVisible;
 }
 
 @end

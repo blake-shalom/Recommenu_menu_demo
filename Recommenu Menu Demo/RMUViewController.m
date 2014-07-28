@@ -11,6 +11,9 @@
 @interface RMUViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTable;
+@property (weak, nonatomic) IBOutlet UIView *shroudView;
+@property (weak, nonatomic) IBOutlet RMUViewRatingsPopup *viewRatingsPopup;
+@property (weak, nonatomic) IBOutlet RMUSubmitReviewView *submitReviewPopup;
 
 @end
 
@@ -48,6 +51,8 @@
 {
     RMUMenuTableViewCell *menuCell = (RMUMenuTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
     [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:(indexPath.row)];
+    menuCell.isTopCommentVisible = NO;
+    [menuCell.topCommentView setHidden:YES];
     return menuCell;
 }
 
@@ -61,8 +66,8 @@
     return 200.0f;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     UILabel *myLabel = [[UILabel alloc] init];
     myLabel.frame = CGRectMake(20, 25, 320, 20);
     myLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -72,4 +77,52 @@
     
     return headerView;
 }
+
+- (void)animateShroudInWithCompletion:(void (^)(BOOL))completion
+{
+    [self.shroudView setHidden:NO];
+    [UIView animateWithDuration:0.3f
+                     animations:^{
+                         [self.shroudView setAlpha:0.4f];
+                     }
+     completion:completion];
+}
+- (void)animateShroudOut
+{
+    [UIView animateWithDuration:0.3f
+                     animations:^{
+                         [self.shroudView setAlpha:0.0f];
+                     }
+                     completion:^(BOOL finished) {
+                         [self.shroudView setHidden:YES];
+                     }];
+}
+
+- (IBAction)writeReviewButtonPressed:(id)sender
+{
+    [self animateShroudInWithCompletion:^(BOOL completion) {
+        [self.submitReviewPopup setHidden:NO];
+    }];
+}
+
+- (IBAction)viewRatingsButtonPressed:(id)sender
+{
+    [self animateShroudInWithCompletion:^(BOOL completion) {
+        [self.viewRatingsPopup setHidden:NO];
+    }];
+}
+
+- (IBAction)exitSubmitRating:(id)sender
+{
+    [self.submitReviewPopup setHidden:YES];
+    [self animateShroudOut];
+}
+- (IBAction)exitViewRatings:(id)sender
+{
+    [self.viewRatingsPopup setHidden:YES];
+    [self animateShroudOut];
+}
+
+
+
 @end

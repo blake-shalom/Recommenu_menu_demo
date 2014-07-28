@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RMUSlider.h"
 #import "RMUStarView.h"
+#import "RMUTopCommentView.h"
 
 @interface RMUMenuTableViewCell : UITableViewCell
 
@@ -21,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *writeReviewsButton;
 @property (weak, nonatomic) IBOutlet UIButton *readReviewsButton;
 @property (weak, nonatomic) IBOutlet RMUStarView *starView;
+@property (weak, nonatomic) IBOutlet RMUTopCommentView *topCommentView;
+@property BOOL isTopCommentVisible;
 
 @end

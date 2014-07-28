@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "RMUMenuTableViewCell.h"
+#import "RMUViewRatingsPopup.h"
+#import "RMUSubmitReviewView.h"
 
 @interface RMUViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate>

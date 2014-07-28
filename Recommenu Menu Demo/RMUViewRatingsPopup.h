@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMUCommentTableViewCell.h"
 
 @interface RMUViewRatingsPopup : UIView
 <UITableViewDataSource, UITableViewDelegate>

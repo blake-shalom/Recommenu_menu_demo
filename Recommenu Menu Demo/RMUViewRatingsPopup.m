@@ -14,7 +14,7 @@
 @property (weak,nonatomic) IBOutlet UILabel *popupTitle;
 @property (weak,nonatomic) IBOutlet UIButton *mostRecentButton;
 @property (weak,nonatomic) IBOutlet UIButton *highestRatedButton;
-
+@property (weak,nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -29,6 +29,13 @@
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.layer.cornerRadius = 6.0f;
+    self.contentView.layer.masksToBounds = YES;
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 3;
@@ -36,7 +43,17 @@
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:@"ratingCell"];
+    RMUCommentTableViewCell *cell = (RMUCommentTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"ratingCell"];
+    cell.upvoteButton.tag = indexPath.row;
+    cell.downvoteButton.tag = indexPath.row;
+    [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:indexPath.row];
+    NSLog(@"%@", indexPath);
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 180.0f;
 }
 
 - (IBAction)mostRecentSelected:(id)sender
@@ -57,12 +74,16 @@
 
 - (IBAction)upvoteRecommendation:(id)sender
 {
-    
+//    UIButton *upButton = (UIButton*)sender;
+//    NSIndexPath *upvotedIndex = [NSIndexPath indexPathForRow:upButton.tag inSection:0];
+//    RMUCommentTableViewCell *upCell = (RMUCommentTableViewCell*) [self tableView:self.ratingsTable cellForRowAtIndexPath:upvotedIndex];
+//    [upCell.upButtonImage setImage:[UIImage imageNamed:@"up5g"]];
 }
 
 - (IBAction)downvoteRecommendation:(id)sender
 {
-    
+    NSLog(@"DOWNVOTING BATCH");
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -1,14 +1,14 @@
 //
-//  RMUCommentField.m
+//  RMUEditableSlider.m
 //  Recommenu Menu Demo
 //
-//  Created by Blake Ellingham on 7/25/14.
+//  Created by Blake Ellingham on 7/28/14.
 //  Copyright (c) 2014 Blake Ellingham. All rights reserved.
 //
 
-#import "RMUCommentField.h"
+#import "RMUEditableSlider.h"
 
-@implementation RMUCommentField
+@implementation RMUEditableSlider
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -23,22 +23,9 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self.layer setCornerRadius:6.0f];
-        self.layer.masksToBounds = YES;
-        [self.layer setBorderColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1].CGColor];
-        [self.layer setBorderWidth:1.0f];
+        [self setThumbImage:[UIImage imageNamed:@"up5g"] forState:UIControlStateNormal];
     }
     return self;
-}
-
-- (CGRect)textRectForBounds:(CGRect)bounds
-{
-    return CGRectInset(bounds, 5.0f, 5.0f);
-}
-
-- (CGRect)editingRectForBounds:(CGRect)bounds
-{
-    return CGRectInset(bounds, 5.0f, 5.0f);
 }
 
 /*

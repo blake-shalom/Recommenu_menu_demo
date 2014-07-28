@@ -10,6 +10,8 @@
 		8311891278EB4A6C85198E19 /* libPods-Recommenu Menu Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 289C1CE11BDE4534A47E4BD0 /* libPods-Recommenu Menu Demo.a */; };
 		9D067CAD1982E05400B7DB1D /* RMUCommentField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CAC1982E05400B7DB1D /* RMUCommentField.m */; };
 		9D067CB01982F3B500B7DB1D /* RMUTopCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */; };
+		9D067CB31986BBC200B7DB1D /* RMUCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CB21986BBC200B7DB1D /* RMUCommentTableViewCell.m */; };
+		9D067CB619870E3F00B7DB1D /* RMUEditableSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D067CB519870E3F00B7DB1D /* RMUEditableSlider.m */; };
 		9DE124331979922F006C185B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124321979922F006C185B /* Foundation.framework */; };
 		9DE124351979922F006C185B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124341979922F006C185B /* CoreGraphics.framework */; };
 		9DE124371979922F006C185B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE124361979922F006C185B /* UIKit.framework */; };
@@ -53,6 +55,10 @@
 		9D067CAC1982E05400B7DB1D /* RMUCommentField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUCommentField.m; sourceTree = "<group>"; };
 		9D067CAE1982F3B500B7DB1D /* RMUTopCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUTopCommentView.h; sourceTree = "<group>"; };
 		9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUTopCommentView.m; sourceTree = "<group>"; };
+		9D067CB11986BBC200B7DB1D /* RMUCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUCommentTableViewCell.h; sourceTree = "<group>"; };
+		9D067CB21986BBC200B7DB1D /* RMUCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUCommentTableViewCell.m; sourceTree = "<group>"; };
+		9D067CB419870E3F00B7DB1D /* RMUEditableSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUEditableSlider.h; sourceTree = "<group>"; };
+		9D067CB519870E3F00B7DB1D /* RMUEditableSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUEditableSlider.m; sourceTree = "<group>"; };
 		9DE1242F1979922F006C185B /* Recommenu Menu Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recommenu Menu Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE124321979922F006C185B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE124341979922F006C185B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -160,14 +166,16 @@
 				9DE124421979922F006C185B /* RMUAppDelegate.m */,
 				9DE124441979922F006C185B /* Main_iPhone.storyboard */,
 				9DE124471979922F006C185B /* Main_iPad.storyboard */,
+				9D067CB11986BBC200B7DB1D /* RMUCommentTableViewCell.h */,
+				9D067CB21986BBC200B7DB1D /* RMUCommentTableViewCell.m */,
 				9D067CAE1982F3B500B7DB1D /* RMUTopCommentView.h */,
 				9D067CAF1982F3B500B7DB1D /* RMUTopCommentView.m */,
+				9DEF7F1C19808A91000EB421 /* RMUViewRatingsPopup.h */,
+				9DEF7F1D19808A91000EB421 /* RMUViewRatingsPopup.m */,
 				9D067CAB1982E05400B7DB1D /* RMUCommentField.h */,
 				9D067CAC1982E05400B7DB1D /* RMUCommentField.m */,
 				9DEF7F221981C1DF000EB421 /* RMUSubmitReviewView.h */,
 				9DEF7F231981C1DF000EB421 /* RMUSubmitReviewView.m */,
-				9DEF7F1C19808A91000EB421 /* RMUViewRatingsPopup.h */,
-				9DEF7F1D19808A91000EB421 /* RMUViewRatingsPopup.m */,
 				9DEF7F1F1981A285000EB421 /* RMUClickableStarView.h */,
 				9DEF7F201981A285000EB421 /* RMUClickableStarView.m */,
 				9DEF7F1919804BE5000EB421 /* RMUStarView.h */,
@@ -178,6 +186,8 @@
 				9DEF7F261981DAC6000EB421 /* RMUCurvedButton.m */,
 				9DE1246A197DA641006C185B /* RMUSlider.h */,
 				9DE1246B197DA641006C185B /* RMUSlider.m */,
+				9D067CB419870E3F00B7DB1D /* RMUEditableSlider.h */,
+				9D067CB519870E3F00B7DB1D /* RMUEditableSlider.m */,
 				9DE1244A1979922F006C185B /* RMUViewController.h */,
 				9DE1244B1979922F006C185B /* RMUViewController.m */,
 				9DE1244D1979922F006C185B /* Images.xcassets */,
@@ -364,6 +374,8 @@
 				9DE1246F197DA67E006C185B /* RMUMenuTableViewCell.m in Sources */,
 				9DEF7F1619802551000EB421 /* UIColor+RMUDemoColors.m in Sources */,
 				9DEF7F271981DAC6000EB421 /* RMUCurvedButton.m in Sources */,
+				9D067CB619870E3F00B7DB1D /* RMUEditableSlider.m in Sources */,
+				9D067CB31986BBC200B7DB1D /* RMUCommentTableViewCell.m in Sources */,
 				9D067CB01982F3B500B7DB1D /* RMUTopCommentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
