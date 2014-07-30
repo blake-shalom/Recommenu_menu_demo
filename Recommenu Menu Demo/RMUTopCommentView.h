@@ -10,4 +10,7 @@
 
 @interface RMUTopCommentView : UITextField
 
+@property (weak,nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak,nonatomic) IBOutlet UILabel *nameLabel;
+
 @end

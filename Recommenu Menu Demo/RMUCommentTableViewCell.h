@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet RMUSlider *topFoodSlider;
 @property (weak, nonatomic) IBOutlet RMUSlider *middleFoodSlider;
 @property (weak, nonatomic) IBOutlet RMUSlider *bottomFoodSlider;
+@property (weak, nonatomic) IBOutlet UILabel *oneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *twoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *threeLabel;
 
 @property BOOL isUpvotePressed;
 @property BOOL isDownvotePressed;

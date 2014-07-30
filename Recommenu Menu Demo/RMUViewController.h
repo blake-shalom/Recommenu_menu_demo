@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Blake Ellingham. All rights reserved.
 //
 
+#import <AFNetworking/AFNetworking.h>
 #import <UIKit/UIKit.h>
 #import "RMUMenuTableViewCell.h"
 #import "RMUViewRatingsPopup.h"

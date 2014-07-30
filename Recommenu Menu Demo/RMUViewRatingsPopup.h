@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
 #import "RMUCommentTableViewCell.h"
 
 @interface RMUViewRatingsPopup : UIView
 <UITableViewDataSource, UITableViewDelegate>
 
+@property NSDictionary *reviewDictionary;
+
+- (void) findAllRatingsForMealID:(NSNumber*)mealID;
 
 @end

@@ -31,6 +31,13 @@
     return self;
 }
 
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self.nameLabel setText:@"Margaret G."];
+    [self.commentLabel setText:@"An absolute MUST BUY, favorite on the menu."];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -7,6 +7,8 @@
 //
 
 #import "RMUViewController.h"
+#define MAX_ROWS 2
+#define MAX_COLS 4
 
 @interface RMUViewController ()
 
@@ -14,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIView *shroudView;
 @property (weak, nonatomic) IBOutlet RMUViewRatingsPopup *viewRatingsPopup;
 @property (weak, nonatomic) IBOutlet RMUSubmitReviewView *submitReviewPopup;
+
+@property NSDictionary *menuDictionary;
 
 @end
 
@@ -25,6 +29,7 @@
     [self.view setBackgroundColor:[UIColor RMUSpringWood]];
     [self.menuTable setBackgroundColor:[UIColor RMUSpringWood]];
     [self.menuTable setSeparatorColor:[UIColor RMUSpringWood]];
+    [self loadAllDishes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,9 +45,41 @@
 
 #pragma mark - UITableView DataSource methods
 
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (self.menuDictionary){
+        return [[self.menuDictionary objectForKey:@"objects"]count];
+    }
+    else
+        return 0;
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    if (self.menuDictionary){
+        NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
+        return [[course objectForKey:@"sections"] count];
+    }
+    else {
+        return 0;
+    }
+}
+
+#pragma mark - Networking Methods
+
+- (void)loadAllDishes
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/menus/"
+      parameters:@{@"company": @5}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"SUCCESS with response %@", responseObject);
+             self.menuDictionary = responseObject;
+             [self.menuTable reloadData];
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILED with operation %@", operation.responseString);
+         }];
 }
 
 #pragma mark - UITableView Delegate methods
@@ -50,15 +87,22 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RMUMenuTableViewCell *menuCell = (RMUMenuTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"foodCell"];
-    [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:(indexPath.row)];
+    NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
+    NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:indexPath.row] objectForKey:@"entries"] objectAtIndex:0];
+    [menuCell.foodItemNameLabel setText:[meal objectForKey:@"name"]];
+    [menuCell.foodDescriptionLabel setText:[meal objectForKey:@"description"]];
+    menuCell.writeReviewsButton.tag = indexPath.section * 2 + indexPath.row;
+    menuCell.readReviewsButton.tag = indexPath.section * 2 + indexPath.row;
     menuCell.isTopCommentVisible = NO;
     [menuCell.topCommentView setHidden:YES];
+    [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:10 - indexPath.row];
     return menuCell;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Killer";
+    NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
+    return [course objectForKey:@"name"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +113,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel *myLabel = [[UILabel alloc] init];
-    myLabel.frame = CGRectMake(20, 25, 320, 20);
+    myLabel.frame = CGRectMake(20, 15, 320, 20);
     myLabel.font = [UIFont boldSystemFontOfSize:18];
     myLabel.text = [[self tableView:tableView titleForHeaderInSection:section] uppercaseString];
     UIView *headerView = [[UIView alloc] init];
@@ -98,15 +142,28 @@
                      }];
 }
 
-- (IBAction)writeReviewButtonPressed:(id)sender
+- (IBAction)writeReviewButtonPressed:(UIButton*)button
 {
+    NSInteger section = button.tag / 2;
+    NSInteger row = button.tag % 2;
+    NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
+    NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:row] objectForKey:@"entries"] objectAtIndex:0];
+    NSNumber *mealID = [meal objectForKey:@"id"];
+    [self.viewRatingsPopup findAllRatingsForMealID:mealID];
     [self animateShroudInWithCompletion:^(BOOL completion) {
         [self.submitReviewPopup setHidden:NO];
     }];
 }
 
-- (IBAction)viewRatingsButtonPressed:(id)sender
+- (IBAction)viewRatingsButtonPressed:(UIButton*)button
 {
+    NSInteger section = button.tag / 2;
+    NSInteger row = button.tag % 2;
+    NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
+    NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:row] objectForKey:@"entries"] objectAtIndex:0];
+    NSNumber *mealID = [meal objectForKey:@"id"];
+    [self.viewRatingsPopup findAllRatingsForMealID:mealID];
+
     [self animateShroudInWithCompletion:^(BOOL completion) {
         [self.viewRatingsPopup setHidden:NO];
     }];

@@ -38,7 +38,27 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (self.reviewDictionary) {
+        return [[self.reviewDictionary objectForKey:@"objects"] count];
+    }
+    else {
+        return 0;
+    }
+}
+
+- (void) findAllRatingsForMealID:(NSNumber*)mealID
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
+      parameters:@{@"entry": mealID}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"SUCCESS with response %@", responseObject);
+             self.reviewDictionary = responseObject;
+             [self.ratingsTable reloadData];
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILED with operation %@", operation.responseString);
+         }];
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -46,8 +66,10 @@
     RMUCommentTableViewCell *cell = (RMUCommentTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"ratingCell"];
     cell.upvoteButton.tag = indexPath.row;
     cell.downvoteButton.tag = indexPath.row;
-    [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:indexPath.row];
-    NSLog(@"%@", indexPath);
+    NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
+    [cell.oneLabel setText: [commentDict objectForKey:@"comment"]];
+    [cell.twoLabel setText:@"Margaret G."];
+    [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:10 - indexPath.row];
     return cell;
 }
 
@@ -74,16 +96,10 @@
 
 - (IBAction)upvoteRecommendation:(id)sender
 {
-//    UIButton *upButton = (UIButton*)sender;
-//    NSIndexPath *upvotedIndex = [NSIndexPath indexPathForRow:upButton.tag inSection:0];
-//    RMUCommentTableViewCell *upCell = (RMUCommentTableViewCell*) [self tableView:self.ratingsTable cellForRowAtIndexPath:upvotedIndex];
-//    [upCell.upButtonImage setImage:[UIImage imageNamed:@"up5g"]];
 }
 
 - (IBAction)downvoteRecommendation:(id)sender
 {
-    NSLog(@"DOWNVOTING BATCH");
-
 }
 /*
 // Only override drawRect: if you perform custom drawing.

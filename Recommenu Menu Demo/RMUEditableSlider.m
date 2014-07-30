@@ -23,7 +23,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self setThumbImage:[UIImage imageNamed:@"up5g"] forState:UIControlStateNormal];
+        [self setThumbImage:[UIImage imageNamed:@"thumb-small"] forState:UIControlStateNormal];
     }
     return self;
 }
