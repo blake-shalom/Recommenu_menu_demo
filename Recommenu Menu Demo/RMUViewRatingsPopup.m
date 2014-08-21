@@ -67,9 +67,13 @@
     cell.upvoteButton.tag = indexPath.row;
     cell.downvoteButton.tag = indexPath.row;
     NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
-    [cell.oneLabel setText: [commentDict objectForKey:@"comment"]];
-    [cell.twoLabel setText:@"Margaret G."];
+    [cell.commentLabel setText: [commentDict objectForKey:@"comment"]];
+    [cell.nameLabel setText:@"Margaret G."];
     [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:10 - indexPath.row];
+    [cell.topFoodSlider setValue:70.0f animated:YES];
+    [cell.middleFoodSlider setValue:30.0f animated:YES];
+    [cell.bottomFoodSlider setValue:50.0f animated:YES];
+
     return cell;
 }
 

@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *shroudView;
 @property (weak, nonatomic) IBOutlet RMUViewRatingsPopup *viewRatingsPopup;
 @property (weak, nonatomic) IBOutlet RMUSubmitReviewView *submitReviewPopup;
+@property (weak, nonatomic) IBOutlet UIButton *dismissKeyboardButton;
 
 @property NSDictionary *menuDictionary;
 
@@ -30,6 +31,11 @@
     [self.menuTable setBackgroundColor:[UIColor RMUSpringWood]];
     [self.menuTable setSeparatorColor:[UIColor RMUSpringWood]];
     [self loadAllDishes];
+    self.submitReviewPopup.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +47,16 @@
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+- (void)keyboardDidShow: (NSNotification *) notif
+{
+    [self.dismissKeyboardButton setHidden:NO];
+}
+- (IBAction)dismissButtonTouched:(id)sender
+{
+    [self.view endEditing:YES];
+    [self.dismissKeyboardButton setHidden:YES];
 }
 
 #pragma mark - UITableView DataSource methods
@@ -96,6 +112,10 @@
     menuCell.isTopCommentVisible = NO;
     [menuCell.topCommentView setHidden:YES];
     [menuCell.starView fillInNumberOfStarsWithNumberOfHalfStars:10 - indexPath.row];
+    [menuCell.topFoodSlider setValue:70.0f animated:YES];
+    [menuCell.middleFoodSlider setValue:30.0f animated:YES];
+    [menuCell.bottomFoodSlider setValue:50.0f animated:YES];
+
     return menuCell;
 }
 
@@ -149,7 +169,7 @@
     NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
     NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:row] objectForKey:@"entries"] objectAtIndex:0];
     NSNumber *mealID = [meal objectForKey:@"id"];
-    [self.viewRatingsPopup findAllRatingsForMealID:mealID];
+    self.submitReviewPopup.mealId = mealID;
     [self animateShroudInWithCompletion:^(BOOL completion) {
         [self.submitReviewPopup setHidden:NO];
     }];
@@ -180,6 +200,10 @@
     [self animateShroudOut];
 }
 
-
+- (void)submitReviewReadyWillDismiss
+{
+    [self.submitReviewPopup setHidden:YES];
+    [self animateShroudOut];
+}
 
 @end

@@ -13,7 +13,7 @@
 #import "RMUSubmitReviewView.h"
 
 @interface RMUViewController : UIViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, RMUSubmitReviewDelegate>
 
 
 @end

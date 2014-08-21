@@ -48,10 +48,15 @@
     if (!self.isUpvotePressed && !self.isDownvotePressed) {
         [self.upButtonImage setImage:[UIImage imageNamed:@"up5g"]];
         self.isUpvotePressed = YES;
+        NSInteger addedInt = [self.upvoteLabel.text integerValue] + 1;
+        [self.upvoteLabel setText:[NSString stringWithFormat:(@"%li"), (long)addedInt]];
     }
     else if (self.isUpvotePressed && !self.isDownvotePressed) {
         [self.upButtonImage setImage:[UIImage imageNamed:@"up5"]];
         self.isUpvotePressed = NO;
+        NSInteger subInt = [self.upvoteLabel.text integerValue] - 1;
+        [self.upvoteLabel setText:[NSString stringWithFormat:(@"%li"), (long)subInt]];
+
     }
 }
 
@@ -61,10 +66,14 @@
     if (!self.isUpvotePressed && !self.isDownvotePressed) {
         [self.downButtonImage setImage:[UIImage imageNamed:@"down5r"]];
         self.isDownvotePressed = YES;
+        NSInteger addedInt = [self.downvoteLabel.text integerValue] + 1;
+        [self.downvoteLabel setText:[NSString stringWithFormat:(@"%li"), (long)addedInt]];
     }
     else if (!self.isUpvotePressed && self.isDownvotePressed) {
         [self.downButtonImage setImage:[UIImage imageNamed:@"down5"]];
         self.isDownvotePressed = NO;
+        NSInteger subInt = [self.downvoteLabel.text integerValue] - 1;
+        [self.downvoteLabel setText:[NSString stringWithFormat:(@"%li"), (long)subInt]];
     }
 }
 
