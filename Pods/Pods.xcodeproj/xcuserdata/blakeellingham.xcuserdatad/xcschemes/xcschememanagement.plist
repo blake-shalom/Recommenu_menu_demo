@@ -4,29 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Recommenu Demo V2-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Recommenu Demo V2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Recommenu Menu Demo-AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>Pods-Recommenu Menu Demo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B1ECAE0D7A624D859342F0DC</key>
+		<key>0DB34718D2B84A51B43B4ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BDDBC66375944B6A99F31E29</key>
+		<key>1FF556B17D644E78B4BF32B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48407462760742AB8C085A96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA17EC81A7394DD0B1928D7C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

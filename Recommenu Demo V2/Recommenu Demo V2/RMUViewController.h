@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking.h>
+#import "RMUMenuCell.h"
+#import "RMUHeaderCollectionView.h"
 
 @interface RMUViewController : UIViewController
 <UICollectionViewDataSource, UICollectionViewDelegate>

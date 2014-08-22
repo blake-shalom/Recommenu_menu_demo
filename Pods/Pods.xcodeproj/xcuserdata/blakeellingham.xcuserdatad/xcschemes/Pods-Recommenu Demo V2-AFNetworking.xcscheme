@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "48407462760742AB8C085A96"
-               BuildableName = "libPods-Recommenu Menu Demo-AFNetworking.a"
-               BlueprintName = "Pods-Recommenu Menu Demo-AFNetworking"
+               BlueprintIdentifier = "BA17EC81A7394DD0B1928D7C"
+               BuildableName = "libPods-Recommenu Demo V2-AFNetworking.a"
+               BlueprintName = "Pods-Recommenu Demo V2-AFNetworking"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
