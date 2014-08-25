@@ -10,6 +10,8 @@
 		3BDABE590D904469BD14AB03 /* libPods-Recommenu Demo V2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0EC1A491B4B4C10B4A0F81D /* libPods-Recommenu Demo V2.a */; };
 		9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50319ABC61D00188479 /* RMUSlider.m */; };
 		9D97B50719ABC63B00188479 /* UIColor+RMUDemoColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */; };
+		9D97B50D19ABDEB600188479 /* RMURatingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50C19ABDEB600188479 /* RMURatingTableCell.m */; };
+		9D97B51019ABE02700188479 /* RMUReviewsPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50F19ABE02700188479 /* RMUReviewsPopupView.m */; };
 		9DE11BCB19A6583100B07B21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCA19A6583100B07B21 /* Foundation.framework */; };
 		9DE11BCD19A6583100B07B21 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */; };
 		9DE11BCF19A6583100B07B21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCE19A6583100B07B21 /* UIKit.framework */; };
@@ -47,6 +49,10 @@
 		9D97B50319ABC61D00188479 /* RMUSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUSlider.m; sourceTree = "<group>"; };
 		9D97B50519ABC63B00188479 /* UIColor+RMUDemoColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RMUDemoColors.h"; sourceTree = "<group>"; };
 		9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RMUDemoColors.m"; sourceTree = "<group>"; };
+		9D97B50B19ABDEB600188479 /* RMURatingTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMURatingTableCell.h; sourceTree = "<group>"; };
+		9D97B50C19ABDEB600188479 /* RMURatingTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMURatingTableCell.m; sourceTree = "<group>"; };
+		9D97B50E19ABE02700188479 /* RMUReviewsPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUReviewsPopupView.h; sourceTree = "<group>"; };
+		9D97B50F19ABE02700188479 /* RMUReviewsPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUReviewsPopupView.m; sourceTree = "<group>"; };
 		9DE11BC719A6583100B07B21 /* Recommenu Demo V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recommenu Demo V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE11BCA19A6583100B07B21 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,6 +124,10 @@
 				9DE11C0319A6A45100B07B21 /* RMUMenuCell.m */,
 				9D97B50219ABC61D00188479 /* RMUSlider.h */,
 				9D97B50319ABC61D00188479 /* RMUSlider.m */,
+				9D97B50B19ABDEB600188479 /* RMURatingTableCell.h */,
+				9D97B50C19ABDEB600188479 /* RMURatingTableCell.m */,
+				9D97B50E19ABE02700188479 /* RMUReviewsPopupView.h */,
+				9D97B50F19ABE02700188479 /* RMUReviewsPopupView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -357,9 +367,11 @@
 				9DE11C1919AB756000B07B21 /* RMUStarView.m in Sources */,
 				9DE11C0419A6A45100B07B21 /* RMUMenuCell.m in Sources */,
 				9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */,
+				9D97B50D19ABDEB600188479 /* RMURatingTableCell.m in Sources */,
 				9DE11BE419A6583100B07B21 /* RMUViewController.m in Sources */,
 				9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */,
 				9DE11BDB19A6583100B07B21 /* RMUAppDelegate.m in Sources */,
+				9D97B51019ABE02700188479 /* RMUReviewsPopupView.m in Sources */,
 				9DE11C0719A6A7CF00B07B21 /* RMUHeaderCollectionView.m in Sources */,
 				9D97B50719ABC63B00188479 /* UIColor+RMUDemoColors.m in Sources */,
 			);
