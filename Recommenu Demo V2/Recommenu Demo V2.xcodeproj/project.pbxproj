@@ -14,8 +14,6 @@
 		9DE11BD519A6583100B07B21 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BD319A6583100B07B21 /* InfoPlist.strings */; };
 		9DE11BD719A6583100B07B21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11BD619A6583100B07B21 /* main.m */; };
 		9DE11BDB19A6583100B07B21 /* RMUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11BDA19A6583100B07B21 /* RMUAppDelegate.m */; };
-		9DE11BDE19A6583100B07B21 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */; };
-		9DE11BE119A6583100B07B21 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */; };
 		9DE11BE419A6583100B07B21 /* RMUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11BE319A6583100B07B21 /* RMUViewController.m */; };
 		9DE11BE619A6583100B07B21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BE519A6583100B07B21 /* Images.xcassets */; };
 		9DE11BED19A6583100B07B21 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BEC19A6583100B07B21 /* XCTest.framework */; };
@@ -26,6 +24,9 @@
 		9DE11C0419A6A45100B07B21 /* RMUMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C0319A6A45100B07B21 /* RMUMenuCell.m */; };
 		9DE11C0719A6A7CF00B07B21 /* RMUHeaderCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C0619A6A7CF00B07B21 /* RMUHeaderCollectionView.m */; };
 		9DE11C0F19A7D86000B07B21 /* RMUPicCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */; };
+		9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */; };
+		9DE11C1319AA778700B07B21 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */; };
+		9DE11C1419AA77C100B07B21 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		9DE11C0519A6A7CF00B07B21 /* RMUHeaderCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUHeaderCollectionView.h; sourceTree = "<group>"; };
 		9DE11C0619A6A7CF00B07B21 /* RMUHeaderCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUHeaderCollectionView.m; sourceTree = "<group>"; };
 		9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RMUPicCollectionHeader.xib; path = ../RMUPicCollectionHeader.xib; sourceTree = "<group>"; };
+		9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUPicCollectionView.h; sourceTree = "<group>"; };
+		9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUPicCollectionView.m; sourceTree = "<group>"; };
 		D0498654AEFB40A9BAB523F8 /* Pods-Recommenu Demo V2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommenu Demo V2.xcconfig"; path = "../Pods/Pods-Recommenu Demo V2.xcconfig"; sourceTree = "<group>"; };
 		E0EC1A491B4B4C10B4A0F81D /* libPods-Recommenu Demo V2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recommenu Demo V2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -129,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */,
+				9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */,
+				9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */,
 				9DE11BD919A6583100B07B21 /* RMUAppDelegate.h */,
 				9DE11BDA19A6583100B07B21 /* RMUAppDelegate.m */,
 				9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */,
@@ -253,9 +258,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DE11BE119A6583100B07B21 /* Main_iPad.storyboard in Resources */,
+				9DE11C1419AA77C100B07B21 /* Main_iPhone.storyboard in Resources */,
+				9DE11C1319AA778700B07B21 /* Main_iPad.storyboard in Resources */,
 				9DE11BE619A6583100B07B21 /* Images.xcassets in Resources */,
-				9DE11BDE19A6583100B07B21 /* Main_iPhone.storyboard in Resources */,
 				9DE11BD519A6583100B07B21 /* InfoPlist.strings in Resources */,
 				9DE11C0F19A7D86000B07B21 /* RMUPicCollectionHeader.xib in Resources */,
 			);
@@ -311,6 +316,7 @@
 			files = (
 				9DE11BD719A6583100B07B21 /* main.m in Sources */,
 				9DE11C0419A6A45100B07B21 /* RMUMenuCell.m in Sources */,
+				9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */,
 				9DE11BE419A6583100B07B21 /* RMUViewController.m in Sources */,
 				9DE11BDB19A6583100B07B21 /* RMUAppDelegate.m in Sources */,
 				9DE11C0719A6A7CF00B07B21 /* RMUHeaderCollectionView.m in Sources */,

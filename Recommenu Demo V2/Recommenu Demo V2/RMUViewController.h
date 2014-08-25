@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import "RMUMenuCell.h"
 #import "RMUHeaderCollectionView.h"
+#import "RMUPicCollectionView.h"
 
 @interface RMUViewController : UIViewController
 <UICollectionViewDataSource, UICollectionViewDelegate>
