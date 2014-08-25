@@ -11,6 +11,7 @@
 #import "RMUMenuCell.h"
 #import "RMUHeaderCollectionView.h"
 #import "RMUPicCollectionView.h"
+#import "RMUStarView.h"
 
 @interface RMUViewController : UIViewController
 <UICollectionViewDataSource, UICollectionViewDelegate>

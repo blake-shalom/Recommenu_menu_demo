@@ -12,6 +12,7 @@
 
 // UI
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
+@property (weak, nonatomic) IBOutlet RMUStarView *starView;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -20,6 +21,10 @@
 @end
 
 @implementation RMUViewController
+
+/*
+ *  View did load loads dishes and ready's UI
+ */
 
 - (void)viewDidLoad
 {
@@ -40,6 +45,10 @@
 
 #pragma mark - UICollection View Data Source
 
+/*
+ *  Returns count of sections from DB
+ */
+
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     if (self.menuDictionary){
@@ -49,6 +58,9 @@
         return 0;
 }
 
+/*
+ *  Returns number of items in each sections from DB
+ */
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -60,6 +72,10 @@
         return 0;
     }
 }
+
+/*
+ *  Either we return a header with a pic for the first index, else return just the name
+ */
 
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -81,6 +97,10 @@
     return view;
 }
 
+/*
+ *  Cell for index, fills in info from the DB
+ */
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RMUMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"menuCell" forIndexPath:indexPath];
@@ -88,6 +108,14 @@
     NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:indexPath.row] objectForKey:@"entries"] objectAtIndex:0];
     [cell.itemTitle setText:[meal objectForKey:@"name"]];
     [cell.itemDescription setText:[meal objectForKey:@"description"]];
+    // Handle stars
+    NSNumber *starAverage = [meal objectForKey:@"star_average"];
+    if (starAverage != (id) [NSNull null])
+        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2];
+    else
+        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:0];
+    
+    // Handle Image for dish
     UIImage *img;
     NSString *entreeID = [meal objectForKey:@"id"];
     if ([self.imageDictionary objectForKey:entreeID]) {
@@ -102,6 +130,10 @@
     [cell.itemImage setImage:img];
     return cell;
 }
+
+/*
+ *  Either return the pic header height or the regular section height
+ */
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {

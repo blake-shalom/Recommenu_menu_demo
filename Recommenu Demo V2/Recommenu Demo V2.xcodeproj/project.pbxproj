@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3BDABE590D904469BD14AB03 /* libPods-Recommenu Demo V2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0EC1A491B4B4C10B4A0F81D /* libPods-Recommenu Demo V2.a */; };
+		9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50319ABC61D00188479 /* RMUSlider.m */; };
+		9D97B50719ABC63B00188479 /* UIColor+RMUDemoColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */; };
 		9DE11BCB19A6583100B07B21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCA19A6583100B07B21 /* Foundation.framework */; };
 		9DE11BCD19A6583100B07B21 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */; };
 		9DE11BCF19A6583100B07B21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCE19A6583100B07B21 /* UIKit.framework */; };
@@ -27,6 +29,7 @@
 		9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */; };
 		9DE11C1319AA778700B07B21 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */; };
 		9DE11C1419AA77C100B07B21 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */; };
+		9DE11C1919AB756000B07B21 /* RMUStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C1819AB756000B07B21 /* RMUStarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9D97B50219ABC61D00188479 /* RMUSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUSlider.h; sourceTree = "<group>"; };
+		9D97B50319ABC61D00188479 /* RMUSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUSlider.m; sourceTree = "<group>"; };
+		9D97B50519ABC63B00188479 /* UIColor+RMUDemoColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RMUDemoColors.h"; sourceTree = "<group>"; };
+		9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RMUDemoColors.m"; sourceTree = "<group>"; };
 		9DE11BC719A6583100B07B21 /* Recommenu Demo V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recommenu Demo V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE11BCA19A6583100B07B21 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,6 +74,8 @@
 		9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RMUPicCollectionHeader.xib; path = ../RMUPicCollectionHeader.xib; sourceTree = "<group>"; };
 		9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUPicCollectionView.h; sourceTree = "<group>"; };
 		9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUPicCollectionView.m; sourceTree = "<group>"; };
+		9DE11C1719AB756000B07B21 /* RMUStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUStarView.h; sourceTree = "<group>"; };
+		9DE11C1819AB756000B07B21 /* RMUStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUStarView.m; sourceTree = "<group>"; };
 		D0498654AEFB40A9BAB523F8 /* Pods-Recommenu Demo V2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommenu Demo V2.xcconfig"; path = "../Pods/Pods-Recommenu Demo V2.xcconfig"; sourceTree = "<group>"; };
 		E0EC1A491B4B4C10B4A0F81D /* libPods-Recommenu Demo V2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recommenu Demo V2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,6 +105,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D97B50819ABC7B000188479 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9DE11C1719AB756000B07B21 /* RMUStarView.h */,
+				9DE11C1819AB756000B07B21 /* RMUStarView.m */,
+				9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */,
+				9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */,
+				9DE11C0519A6A7CF00B07B21 /* RMUHeaderCollectionView.h */,
+				9DE11C0619A6A7CF00B07B21 /* RMUHeaderCollectionView.m */,
+				9DE11C0219A6A45100B07B21 /* RMUMenuCell.h */,
+				9DE11C0319A6A45100B07B21 /* RMUMenuCell.m */,
+				9D97B50219ABC61D00188479 /* RMUSlider.h */,
+				9D97B50319ABC61D00188479 /* RMUSlider.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9D97B50919ABC7C200188479 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9DE11BE219A6583100B07B21 /* RMUViewController.h */,
+				9DE11BE319A6583100B07B21 /* RMUViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		9D97B50A19ABC7E700188479 /* Interface Builder */ = {
+			isa = PBXGroup;
+			children = (
+				9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */,
+				9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */,
+				9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */,
+			);
+			name = "Interface Builder";
+			sourceTree = "<group>";
+		};
 		9DE11BBE19A6583100B07B21 = {
 			isa = PBXGroup;
 			children = (
@@ -131,19 +176,13 @@
 		9DE11BD019A6583100B07B21 /* Recommenu Demo V2 */ = {
 			isa = PBXGroup;
 			children = (
-				9DE11C0E19A7D86000B07B21 /* RMUPicCollectionHeader.xib */,
-				9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */,
-				9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */,
+				9D97B50819ABC7B000188479 /* Views */,
+				9D97B50919ABC7C200188479 /* Controllers */,
+				9D97B50A19ABC7E700188479 /* Interface Builder */,
 				9DE11BD919A6583100B07B21 /* RMUAppDelegate.h */,
 				9DE11BDA19A6583100B07B21 /* RMUAppDelegate.m */,
-				9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */,
-				9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */,
-				9DE11C0519A6A7CF00B07B21 /* RMUHeaderCollectionView.h */,
-				9DE11C0619A6A7CF00B07B21 /* RMUHeaderCollectionView.m */,
-				9DE11C0219A6A45100B07B21 /* RMUMenuCell.h */,
-				9DE11C0319A6A45100B07B21 /* RMUMenuCell.m */,
-				9DE11BE219A6583100B07B21 /* RMUViewController.h */,
-				9DE11BE319A6583100B07B21 /* RMUViewController.m */,
+				9D97B50519ABC63B00188479 /* UIColor+RMUDemoColors.h */,
+				9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */,
 				9DE11BE519A6583100B07B21 /* Images.xcassets */,
 				9DE11BD119A6583100B07B21 /* Supporting Files */,
 			);
@@ -315,11 +354,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE11BD719A6583100B07B21 /* main.m in Sources */,
+				9DE11C1919AB756000B07B21 /* RMUStarView.m in Sources */,
 				9DE11C0419A6A45100B07B21 /* RMUMenuCell.m in Sources */,
 				9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */,
 				9DE11BE419A6583100B07B21 /* RMUViewController.m in Sources */,
+				9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */,
 				9DE11BDB19A6583100B07B21 /* RMUAppDelegate.m in Sources */,
 				9DE11C0719A6A7CF00B07B21 /* RMUHeaderCollectionView.m in Sources */,
+				9D97B50719ABC63B00188479 /* UIColor+RMUDemoColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

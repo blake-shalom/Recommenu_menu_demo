@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMUStarView.h"
 
 @interface RMUMenuCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UILabel *itemDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImage;
+@property (weak, nonatomic) IBOutlet RMUStarView *starView;
 
 @end
