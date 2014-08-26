@@ -21,12 +21,62 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (self.reviewDictionary) {
+        return [[self.reviewDictionary objectForKey:@"objects"] count];
+    }
+    else {
+        return 0;
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
+    RMURatingTableCell *reviewCell = (RMURatingTableCell*) [tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
+    NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
+    if ([commentDict objectForKey:@"comment"] != (id) [NSNull null])
+        [reviewCell.reviewParagraph setText:[commentDict objectForKey:@"comment"]];
+    if ([commentDict objectForKey:@"title"] != (id) [NSNull null])
+        [reviewCell.reviewTitle setText:[commentDict objectForKey:@"title"]];
+    if ([commentDict objectForKey:@"date_posted"] != (id) [NSNull null])
+        [reviewCell.reviewDate setText:[commentDict objectForKey:@"date_posted"]];
+    if ([commentDict objectForKey:@"nickname"] != (id) [NSNull null])
+        [reviewCell.reviewName setText:[commentDict objectForKey:@"nickname"]];
+    //Handle Sliders
+    NSArray *sliders = [commentDict objectForKey:@"sliders"];
+    if (sliders.count > 0){
+        for (int i = 0; i < sliders.count; i++) {
+            NSNumber *score = [sliders[i] objectForKey:@"score"];
+            RMUSlider *currSlider = (RMUSlider*) [reviewCell viewWithTag:i + 5];
+            UILabel *currLabel = (UILabel*) [reviewCell viewWithTag:i + 8];
+            [currSlider setValue:score.integerValue * 10];
+            [currLabel setText:[sliders[i] objectForKey:@"category"]];
+        }
+    }
+    NSNumber *numberStars = [commentDict objectForKey:@"stars"];
+    if (numberStars != (id) [NSNull null])
+        [reviewCell.starView fillInNumberOfStarsWithNumberOfHalfStars:numberStars.integerValue * 2];
+    return reviewCell;
+}
+
+#pragma mark - Networking
+
+/*
+ *  GET Reviews call that will load all reviews for a given entree
+ */
+
+-(void)loadAllReviewsWithEntreeID:(NSNumber*)entreeID
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
+      parameters:@{@"entry": entreeID}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"SUCCESS with response %@", responseObject);
+             self.reviewDictionary = responseObject;
+             [self.reviewsTable reloadData];
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILED with operation %@", operation.responseString);
+         }];
 }
 
 /*

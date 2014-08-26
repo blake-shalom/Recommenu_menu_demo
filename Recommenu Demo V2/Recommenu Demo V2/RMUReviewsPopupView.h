@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+#import "RMURatingTableCell.h"
 
 @interface RMUReviewsPopupView : UIView
 <UITableViewDataSource, UITableViewDelegate>
 
+// UI
 @property (weak,nonatomic) IBOutlet UITableView *reviewsTable;
 @property (weak,nonatomic) IBOutlet UILabel *dishNameLabel;
+
+// Data Structures
+@property NSDictionary *reviewDictionary;
+
+// Methods
+-(void)loadAllReviewsWithEntreeID:(NSNumber*)entreeID;
 
 @end

@@ -12,6 +12,7 @@
 		9D97B50719ABC63B00188479 /* UIColor+RMUDemoColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50619ABC63B00188479 /* UIColor+RMUDemoColors.m */; };
 		9D97B50D19ABDEB600188479 /* RMURatingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50C19ABDEB600188479 /* RMURatingTableCell.m */; };
 		9D97B51019ABE02700188479 /* RMUReviewsPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B50F19ABE02700188479 /* RMUReviewsPopupView.m */; };
+		9D97B51319ACE0FD00188479 /* RMUBSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D97B51219ACE0FD00188479 /* RMUBSViewController.m */; };
 		9DE11BCB19A6583100B07B21 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCA19A6583100B07B21 /* Foundation.framework */; };
 		9DE11BCD19A6583100B07B21 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */; };
 		9DE11BCF19A6583100B07B21 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE11BCE19A6583100B07B21 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		9D97B50C19ABDEB600188479 /* RMURatingTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMURatingTableCell.m; sourceTree = "<group>"; };
 		9D97B50E19ABE02700188479 /* RMUReviewsPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUReviewsPopupView.h; sourceTree = "<group>"; };
 		9D97B50F19ABE02700188479 /* RMUReviewsPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUReviewsPopupView.m; sourceTree = "<group>"; };
+		9D97B51119ACE0FD00188479 /* RMUBSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUBSViewController.h; sourceTree = "<group>"; };
+		9D97B51219ACE0FD00188479 /* RMUBSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUBSViewController.m; sourceTree = "<group>"; };
 		9DE11BC719A6583100B07B21 /* Recommenu Demo V2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recommenu Demo V2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE11BCA19A6583100B07B21 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE11BCC19A6583100B07B21 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 			children = (
 				9DE11BE219A6583100B07B21 /* RMUViewController.h */,
 				9DE11BE319A6583100B07B21 /* RMUViewController.m */,
+				9D97B51119ACE0FD00188479 /* RMUBSViewController.h */,
+				9D97B51219ACE0FD00188479 /* RMUBSViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				9DE11C1919AB756000B07B21 /* RMUStarView.m in Sources */,
 				9DE11C0419A6A45100B07B21 /* RMUMenuCell.m in Sources */,
 				9DE11C1219AA402600B07B21 /* RMUPicCollectionView.m in Sources */,
+				9D97B51319ACE0FD00188479 /* RMUBSViewController.m in Sources */,
 				9D97B50D19ABDEB600188479 /* RMURatingTableCell.m in Sources */,
 				9DE11BE419A6583100B07B21 /* RMUViewController.m in Sources */,
 				9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */,
