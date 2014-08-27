@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstSliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondSliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdSliderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *revealReviewButton;
 
 @end

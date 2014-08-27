@@ -174,6 +174,8 @@
         [self.submitReviewPopup setHidden:NO];
     }];
 }
+- (IBAction)revealReviewPopup:(id)sender {
+}
 
 - (IBAction)viewRatingsButtonPressed:(UIButton*)button
 {

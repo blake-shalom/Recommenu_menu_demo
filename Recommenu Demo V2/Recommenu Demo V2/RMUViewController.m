@@ -12,7 +12,6 @@
 
 // UI
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
-@property (weak, nonatomic) IBOutlet RMUStarView *starView;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -105,7 +104,8 @@
 {
     RMUMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"menuCell" forIndexPath:indexPath];
     NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
-    NSDictionary *meal = [[[[course objectForKey:@"sections"]objectAtIndex:indexPath.row] objectForKey:@"entries"] objectAtIndex:0];
+    NSArray *meals = [course objectForKey:@"sections"];
+    NSDictionary *meal = [[meals[indexPath.row] objectForKey:@"entries"] objectAtIndex:0];
     [cell.itemTitle setText:[meal objectForKey:@"name"]];
     [cell.itemDescription setText:[meal objectForKey:@"description"]];
     // Handle stars
@@ -118,6 +118,7 @@
     // Handle Image for dish
     UIImage *img;
     NSString *entreeID = [meal objectForKey:@"id"];
+    
     if ([self.imageDictionary objectForKey:entreeID]) {
         img = [self.imageDictionary objectForKey:entreeID];
     }
@@ -128,6 +129,10 @@
         [self.imageDictionary setObject:img forKey:entreeID];
     }
     [cell.itemImage setImage:img];
+    
+    // Set tag to the id of the dish
+    cell.revealReviewButton.tag = entreeID.integerValue;
+
     return cell;
 }
 
@@ -165,6 +170,17 @@
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);
          }];
+}
+
+#pragma mark - Interactivity
+
+/*
+ *  Loads review screen
+ */
+
+- (IBAction)revealPopupView:(UIButton*)sender
+{
+    NSLog(@"REVEALED at index %i", sender.tag);
 }
 
 @end
