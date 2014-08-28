@@ -6,12 +6,18 @@
 //  Copyright (c) 2014 Blake Ellingham. All rights reserved.
 //
 
+// Imports
 #import "RMUViewController.h"
+
+// Defines
+#define LOCAL_QUEUE dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 
 @interface RMUViewController ()
 
 // UI
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -116,23 +122,20 @@
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:0];
     
     // Handle Image for dish
-    UIImage *img;
     NSString *entreeID = [meal objectForKey:@"id"];
     
     if ([self.imageDictionary objectForKey:entreeID]) {
-        img = [self.imageDictionary objectForKey:entreeID];
+        UIImage *img = [self.imageDictionary objectForKey:entreeID];
+        [cell.itemImage setImage:img];
+        [cell.loadIndicator setHidden:YES];
     }
     else {
-        NSURL *url = [NSURL URLWithString:[meal objectForKey:@"image"]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        img = [[UIImage alloc]initWithData:data];
-        [self.imageDictionary setObject:img forKey:entreeID];
+        [cell.loadIndicator setHidden:NO];
     }
-    [cell.itemImage setImage:img];
-    
     // Set tag to the id of the dish
     cell.revealReviewButton.tag = entreeID.integerValue;
-
+    cell.writeReviewButton.tag = entreeID.integerValue;
+    
     return cell;
 }
 
@@ -165,11 +168,30 @@
              NSLog(@"SUCCESS with response %@", responseObject);
              self.menuDictionary = responseObject;
              [self.menuCollectionView reloadData];
-             self.imageDictionary = [[NSMutableDictionary alloc]init];
+             [self.loadingIndicator setHidden:YES];
+             [self performSelectorInBackground:@selector(loadMenuPictures) withObject:nil];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);
          }];
+}
+
+- (void)loadMenuPictures
+{
+    self.imageDictionary = [[NSMutableDictionary alloc]init];
+    NSArray *courseArray = [self.menuDictionary objectForKey:@"objects"];
+    for (NSDictionary *course in courseArray){
+        NSArray *meals = [course objectForKey:@"sections"];
+        for (NSDictionary *meal in meals) {
+            NSDictionary *mealData = [[meal objectForKey:@"entries"]objectAtIndex:0];
+            NSString *entreeID = [mealData objectForKey:@"id"];
+            NSURL *url = [NSURL URLWithString:[mealData objectForKey:@"image"]];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *img = [[UIImage alloc]initWithData:data];
+            [self.imageDictionary setObject:img forKey:entreeID];
+            [self.menuCollectionView reloadData];
+        }
+    }
 }
 
 #pragma mark - Interactivity
@@ -180,7 +202,12 @@
 
 - (IBAction)revealPopupView:(UIButton*)sender
 {
-    NSLog(@"REVEALED at index %i", sender.tag);
+    NSLog(@"REVEALED at index %li", (long)sender.tag);
+}
+
+- (IBAction)revealWriteReviewView:(UIButton*)sender
+{
+    NSLog(@"REVEALED at index %li", (long)sender.tag);
 }
 
 @end

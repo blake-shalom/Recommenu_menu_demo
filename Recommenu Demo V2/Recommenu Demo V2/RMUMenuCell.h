@@ -25,5 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *secondSliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thirdSliderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *revealReviewButton;
+@property (weak, nonatomic) IBOutlet UIButton *writeReviewButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadIndicator;
 
 @end

@@ -177,6 +177,8 @@
 - (IBAction)revealReviewPopup:(id)sender {
 }
 
+- (IBAction)revealWriteReviewView:(id)sender {
+}
 - (IBAction)viewRatingsButtonPressed:(UIButton*)button
 {
     NSInteger section = button.tag / 2;
@@ -189,6 +191,10 @@
     [self animateShroudInWithCompletion:^(BOOL completion) {
         [self.viewRatingsPopup setHidden:NO];
     }];
+}
+- (IBAction)revealWriteReviewView:(id)sender {
+}
+- (IBAction)revealWriteReviewView:(id)sender {
 }
 
 - (IBAction)exitSubmitRating:(id)sender
