@@ -19,6 +19,14 @@
     return self;
 }
 
+-(void) layoutSubviews
+{
+    [super layoutSubviews];
+    [self.numReviewsLabel setTextColor:[UIColor RMUGreenBlue]];
+    [self.topCommentLabel setTextColor:[UIColor RMUGreenBlue]];
+    [self.writeReviewButton setTitleColor:[UIColor RMUGreenBlue] forState:UIControlStateNormal];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

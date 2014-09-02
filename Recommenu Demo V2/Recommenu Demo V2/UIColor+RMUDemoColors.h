@@ -13,5 +13,6 @@
 +(UIColor*) RMUBlueChill;
 +(UIColor*) RMUSunglow;
 +(UIColor*) RMUSpringWood;
++(UIColor*) RMUGreenBlue;
 
 @end

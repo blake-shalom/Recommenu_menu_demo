@@ -11,13 +11,16 @@
 
 // Defines
 #define LOCAL_QUEUE dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
+#define HEIGHT_OF_FOOTER_VIEW 112.0f
+#define HEIGHT_OF_PIC_HEADER 433.0f
+#define HEIGHT_OF_HEADER 80.0f
 
 @interface RMUViewController ()
 
 // UI
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
+@property (weak, nonatomic) IBOutlet UIView *yellowSection;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -35,9 +38,10 @@
 {
     [super viewDidLoad];
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout*)self.menuCollectionView.collectionViewLayout;
-    collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 0, 20, 0);
+    collectionViewLayout.sectionInset = UIEdgeInsetsMake(13, 0, 13, 0);
     [self.menuCollectionView registerNib:[UINib nibWithNibName:@"RMUPicCollectionHeader" bundle:[NSBundle mainBundle]]
               forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"picCollectionView"];
+    [self.yellowSection setBackgroundColor:[UIColor RMUSunglow]];
     [self loadAllDishes];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -85,19 +89,26 @@
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *view;
-    if (indexPath.section > 0){
-        RMUHeaderCollectionView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"topView" forIndexPath:indexPath];
-        NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
-        [sectionView.sectionTitle setText:[course objectForKey:@"name"]];
-        view = sectionView;
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
+        if (indexPath.section > 0){
+            RMUHeaderCollectionView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"topView" forIndexPath:indexPath];
+            NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
+            [sectionView.sectionTitle setText:[course objectForKey:@"name"]];
+            view = sectionView;
+        }
+        else {
+            RMUPicCollectionView *picSectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                      withReuseIdentifier:@"picCollectionView" forIndexPath:indexPath];
+            NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
+            [picSectionView.sectionLabel setText:[course objectForKey:@"name"]];
+            view = picSectionView;
+            
+        }
     }
-    else {
-        RMUPicCollectionView *picSectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-            withReuseIdentifier:@"picCollectionView" forIndexPath:indexPath];
-        NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
-        [picSectionView.sectionLabel setText:[course objectForKey:@"name"]];
-        view = picSectionView;
-
+    else if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+        view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                      withReuseIdentifier:@"footerView"
+                                                             forIndexPath:indexPath];
     }
     return view;
 }
@@ -146,12 +157,22 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     if (section > 0) {
-        return CGSizeMake(50.0f, 80.0f);
+        return CGSizeMake(50.0f, HEIGHT_OF_HEADER);
     }
     else {
-        return CGSizeMake(50.0f, 350.0f);
+        return CGSizeMake(50.0f, HEIGHT_OF_PIC_HEADER);
     }
 }
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    NSArray *courses = [self.menuDictionary objectForKey:@"objects"];
+    if (section == courses.count -1)
+        return CGSizeMake(CGRectGetWidth(collectionView.bounds), HEIGHT_OF_FOOTER_VIEW);
+    else
+        return CGSizeZero;
+}
+
 
 #pragma mark - Networking
 

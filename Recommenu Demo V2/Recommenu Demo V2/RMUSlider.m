@@ -8,7 +8,7 @@
 
 #import "RMUSlider.h"
 
-#define HEIGHT_OF_SLIDER 15.0f
+#define HEIGHT_OF_SLIDER 8.0f
 
 @interface RMUSlider()
 
@@ -22,8 +22,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderColor =[UIColor grayColor].CGColor;
-        self.layer.borderWidth = 1.0f;
+//        self.layer.borderColor =[UIColor grayColor].CGColor;
+//        self.layer.borderWidth = 1.0f;
     }
     return self;
 }
@@ -32,9 +32,9 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.layer.borderColor =[UIColor lightGrayColor].CGColor;
-        self.layer.borderWidth = 1.0f;
-        self.layer.cornerRadius = 6;
+//        self.layer.borderColor =[UIColor lightGrayColor].CGColor;
+//        self.layer.borderWidth = 1.0f;
+        self.layer.cornerRadius = 4;
         self.layer.masksToBounds = YES;
         self.sliderHeight = HEIGHT_OF_SLIDER;
         CGRect rect = CGRectMake(0, 0, 1, 1);
@@ -45,7 +45,7 @@
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         [self setMinimumTrackImage:image forState:UIControlStateNormal];
-        [self setMaximumTrackTintColor:[UIColor whiteColor]];
+        [self setMaximumTrackTintColor:[UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1]];
     }
     return self;
 }
