@@ -28,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSNumber *entree = [NSNumber numberWithInt:42];
+    NSNumber *entree = [NSNumber numberWithInt:1];
     [self.reviewPopup loadAllReviewsWithEntreeID:entree];
     // Do any additional setup after loading the view.
 }

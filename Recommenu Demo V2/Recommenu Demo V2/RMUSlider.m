@@ -44,6 +44,7 @@
         [self setThumbImage:[[UIImage alloc]init] forState:UIControlStateNormal];
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        
         [self setMinimumTrackImage:image forState:UIControlStateNormal];
         [self setMaximumTrackTintColor:[UIColor colorWithRed:0.91 green:0.91 blue:0.91 alpha:1]];
     }

@@ -7,6 +7,7 @@
 //
 
 // Imports
+#import <math.h>
 #import "RMUViewController.h"
 
 // Defines
@@ -61,7 +62,8 @@
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     if (self.menuDictionary){
-        return [[self.menuDictionary objectForKey:@"objects"]count];
+        NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+        return [courseArray count];
     }
     else
         return 0;
@@ -74,8 +76,9 @@
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.menuDictionary){
-        NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:section];
-        return [[course objectForKey:@"sections"] count];
+        NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+        NSDictionary *course = [courseArray objectAtIndex:section];
+        return [[course objectForKey:@"entries"] count];
     }
     else {
         return 0;
@@ -92,14 +95,16 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
         if (indexPath.section > 0){
             RMUHeaderCollectionView *sectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"topView" forIndexPath:indexPath];
-            NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
+            NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+            NSDictionary *course = [courseArray objectAtIndex:indexPath.section];
             [sectionView.sectionTitle setText:[course objectForKey:@"name"]];
             view = sectionView;
         }
         else {
             RMUPicCollectionView *picSectionView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                                       withReuseIdentifier:@"picCollectionView" forIndexPath:indexPath];
-            NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
+            NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+            NSDictionary *course = [courseArray objectAtIndex:indexPath.section];
             [picSectionView.sectionLabel setText:[course objectForKey:@"name"]];
             view = picSectionView;
             
@@ -120,17 +125,32 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RMUMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"menuCell" forIndexPath:indexPath];
-    NSDictionary *course = [[self.menuDictionary objectForKey:@"objects"]objectAtIndex:indexPath.section];
-    NSArray *meals = [course objectForKey:@"sections"];
-    NSDictionary *meal = [[meals[indexPath.row] objectForKey:@"entries"] objectAtIndex:0];
+    NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+    NSDictionary *course = [courseArray objectAtIndex:indexPath.section];
+    NSArray *meals = [course objectForKey:@"entries"];
+    NSDictionary *meal = meals[indexPath.row];
     [cell.itemTitle setText:[meal objectForKey:@"name"]];
     [cell.itemDescription setText:[meal objectForKey:@"description"]];
+    [cell.numReviewsLabel setText:[NSString stringWithFormat:(@"%@ reviews"), [meal objectForKey:@"review_count"]]];
     // Handle stars
     NSNumber *starAverage = [meal objectForKey:@"star_average"];
-    if (starAverage != (id) [NSNull null])
-        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2];
-    else
+    if (starAverage == (id) [NSNull null])
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:0];
+
+    CGFloat starFloat = starAverage.floatValue;
+    CGFloat starRemain = fmodf(starFloat, 1);
+    if (starRemain < 0.33f)
+        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2];
+    else if (starRemain < 0.66)
+        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2 + 1];
+    else
+        [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:(starAverage.integerValue +1) * 2];
+    
+    NSNumber *priceNumber = [meal objectForKey:@"price"];
+    if (priceNumber != (id) [NSNull null])
+        [cell.priceLabel setText:[NSString stringWithFormat:(@"$%@"),priceNumber]];
+    else
+        [cell.priceLabel setText:@""];
     
     // Handle Image for dish
     NSString *entreeID = [meal objectForKey:@"id"];
@@ -141,8 +161,32 @@
         [cell.loadIndicator setHidden:YES];
     }
     else {
+        UIImage *img = [[UIImage alloc]init];
+        [cell.itemImage setImage:img];
         [cell.loadIndicator setHidden:NO];
     }
+    
+    // Handle Sliders
+    NSArray *sliders = [meal objectForKey:@"slider_templates"];
+    if (sliders.count > 0){
+        for (int i = 0; i < 3; i++) {
+            RMUSlider *currSlider = (RMUSlider*) [cell viewWithTag:i + 5];
+            UILabel *currLabel = (UILabel*) [cell viewWithTag:i + 8];
+            if (i < sliders.count) {
+                NSNumber *score = [sliders[i] objectForKey:@"average_score"];
+                [currLabel setHidden:NO];
+                [currSlider setHidden:NO];
+                [currSlider setValue:[NSNumber numberWithFloat:score.floatValue * 20].intValue];
+                [currLabel setText:[sliders[i] objectForKey:@"category"]];
+            }
+            else {
+                [currLabel setHidden:YES];
+                [currSlider setHidden:YES];
+            }
+        }
+    }
+
+    
     // Set tag to the id of the dish
     cell.revealReviewButton.tag = entreeID.integerValue;
     cell.writeReviewButton.tag = entreeID.integerValue;
@@ -166,8 +210,8 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    NSArray *courses = [self.menuDictionary objectForKey:@"objects"];
-    if (section == courses.count -1)
+    NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+    if (section == courseArray.count -1)
         return CGSizeMake(CGRectGetWidth(collectionView.bounds), HEIGHT_OF_FOOTER_VIEW);
     else
         return CGSizeZero;
@@ -184,7 +228,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/menus/"
-      parameters:@{@"company": @5}
+      parameters:@{@"company": @1}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"SUCCESS with response %@", responseObject);
              self.menuDictionary = responseObject;
@@ -200,16 +244,16 @@
 - (void)loadMenuPictures
 {
     self.imageDictionary = [[NSMutableDictionary alloc]init];
-    NSArray *courseArray = [self.menuDictionary objectForKey:@"objects"];
+    NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
     for (NSDictionary *course in courseArray){
-        NSArray *meals = [course objectForKey:@"sections"];
+        NSArray *meals = [course objectForKey:@"entries"];
         for (NSDictionary *meal in meals) {
-            NSDictionary *mealData = [[meal objectForKey:@"entries"]objectAtIndex:0];
-            NSString *entreeID = [mealData objectForKey:@"id"];
-            NSURL *url = [NSURL URLWithString:[mealData objectForKey:@"image"]];
+            NSString *entreeID = [meal objectForKey:@"id"];
+            NSURL *url = [NSURL URLWithString:[meal objectForKey:@"image"]];
             NSData *data = [NSData dataWithContentsOfURL:url];
             UIImage *img = [[UIImage alloc]initWithData:data];
-            [self.imageDictionary setObject:img forKey:entreeID];
+            if (img != nil)
+                [self.imageDictionary setObject:img forKey:entreeID];
             [self.menuCollectionView reloadData];
         }
     }

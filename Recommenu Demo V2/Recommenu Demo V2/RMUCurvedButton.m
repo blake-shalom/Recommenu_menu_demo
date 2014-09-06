@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.layer.cornerRadius = 6;
+        self.layer.cornerRadius = 5.0f;
         self.layer.masksToBounds = YES;
 
     }
@@ -26,7 +26,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         // Initialization code
-        self.layer.cornerRadius = 6;
+        self.layer.cornerRadius = 5.0f;
         self.layer.masksToBounds = YES;
         
     }

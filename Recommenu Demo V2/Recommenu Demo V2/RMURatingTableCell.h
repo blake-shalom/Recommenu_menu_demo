@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *reviewDate;
 @property (weak, nonatomic) IBOutlet UILabel *reviewParagraph;
 @property (weak, nonatomic) IBOutlet UILabel *reviewTitle;
+@property (weak, nonatomic) IBOutlet UIButton *agreeButton;
 
 @end

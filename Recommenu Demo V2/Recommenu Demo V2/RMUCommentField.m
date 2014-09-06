@@ -23,7 +23,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self.layer setCornerRadius:6.0f];
+        [self.layer setCornerRadius:8.0f];
         self.layer.masksToBounds = YES;
         [self.layer setBorderColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1].CGColor];
         [self.layer setBorderWidth:1.0f];

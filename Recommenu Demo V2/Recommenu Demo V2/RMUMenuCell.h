@@ -27,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *revealReviewButton;
 @property (weak, nonatomic) IBOutlet UIButton *writeReviewButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

@@ -33,12 +33,21 @@
 {
     RMURatingTableCell *reviewCell = (RMURatingTableCell*) [tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
     NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
+    if ([commentDict objectForKey:@"score"] != (id) [NSNull null]) {
+        NSNumber *numb = [commentDict objectForKey:@"score"];
+        [reviewCell.agreeButton setTitle:[NSString stringWithFormat:(@"Yes! (%i agree)"), numb.intValue]
+                                forState:UIControlStateNormal];
+    }
     if ([commentDict objectForKey:@"comment"] != (id) [NSNull null])
         [reviewCell.reviewParagraph setText:[commentDict objectForKey:@"comment"]];
     if ([commentDict objectForKey:@"title"] != (id) [NSNull null])
         [reviewCell.reviewTitle setText:[commentDict objectForKey:@"title"]];
-    if ([commentDict objectForKey:@"date_posted"] != (id) [NSNull null])
-        [reviewCell.reviewDate setText:[commentDict objectForKey:@"date_posted"]];
+    if ([commentDict objectForKey:@"date_posted"] != (id) [NSNull null]) {
+        NSString *dateString = [commentDict objectForKey:@"date_posted"];
+        dateString = [dateString substringToIndex:10];
+        dateString = [dateString stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        [reviewCell.reviewDate setText:dateString];
+    }
     if ([commentDict objectForKey:@"nickname"] != (id) [NSNull null])
         [reviewCell.reviewName setText:[commentDict objectForKey:@"nickname"]];
     //Handle Sliders
@@ -48,7 +57,7 @@
             NSNumber *score = [sliders[i] objectForKey:@"score"];
             RMUSlider *currSlider = (RMUSlider*) [reviewCell viewWithTag:i + 5];
             UILabel *currLabel = (UILabel*) [reviewCell viewWithTag:i + 8];
-            [currSlider setValue:score.integerValue * 10];
+            [currSlider setValue:score.floatValue * 20];
             [currLabel setText:[sliders[i] objectForKey:@"category"]];
         }
     }
