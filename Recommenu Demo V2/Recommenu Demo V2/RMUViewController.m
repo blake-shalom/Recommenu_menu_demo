@@ -146,7 +146,7 @@
     CGFloat starRemain = fmodf(starFloat, 1);
     if (starRemain < 0.33f)
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2];
-    else if (starRemain < 0.66)
+    else if (starRemain < 0.67f)
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2 + 1];
     else
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:(starAverage.integerValue +1) * 2];
@@ -182,7 +182,7 @@
                 NSNumber *score = [sliders[i] objectForKey:@"average_score"];
                 [currLabel setHidden:NO];
                 [currSlider setHidden:NO];
-                [currSlider setValue:[NSNumber numberWithFloat:score.floatValue * 20].intValue];
+                [currSlider setValue:score.floatValue];
                 [currLabel setText:[sliders[i] objectForKey:@"category"]];
             }
             else {

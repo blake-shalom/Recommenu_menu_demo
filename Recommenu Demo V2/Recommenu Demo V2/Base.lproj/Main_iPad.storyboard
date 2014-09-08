@@ -421,6 +421,9 @@
                                                                     <state key="normal" title="Yes! (x agree)">
                                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="upvoteComment:" destination="YIE-ae-4MK" eventType="touchUpInside" id="y3b-hy-pc9"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -485,8 +488,8 @@
                                         <rect key="frame" x="23" y="31" width="722" height="897"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pop-up" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-c7-h2c">
-                                                <rect key="frame" x="0.0" y="0.0" width="722" height="897"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pop-up" translatesAutoresizingMaskIntoConstraints="NO" id="Kya-c7-h2c">
+                                                <rect key="frame" x="0.0" y="14" width="702" height="883"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What did you think of Tacos??" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFz-1o-Fzy">
@@ -624,7 +627,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -659,7 +662,7 @@
         <image name="gauge" width="447" height="15"/>
         <image name="little27g" width="512" height="512"/>
         <image name="logo" width="297" height="29"/>
-        <image name="pop-up" width="722" height="897"/>
+        <image name="pop-up" width="728" height="897"/>
         <image name="social-media-buttons" width="179" height="36"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

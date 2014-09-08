@@ -43,6 +43,9 @@
 {
     RMURatingTableCell *reviewCell = (RMURatingTableCell*) [tableView dequeueReusableCellWithIdentifier:@"reviewCell"];
     NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
+    NSNumber *commentID = [commentDict objectForKey:@"id"];
+    reviewCell.agreeButton.tag = commentID.intValue;
+    
     if ([commentDict objectForKey:@"score"] != (id) [NSNull null]) {
         NSNumber *numb = [commentDict objectForKey:@"score"];
         [reviewCell.agreeButton setTitle:[NSString stringWithFormat:(@"Yes! (%i agree)"), numb.intValue]
@@ -67,7 +70,7 @@
             NSNumber *score = [sliders[i] objectForKey:@"score"];
             RMUSlider *currSlider = (RMUSlider*) [reviewCell viewWithTag:i + 5];
             UILabel *currLabel = (UILabel*) [reviewCell viewWithTag:i + 8];
-            [currSlider setValue:score.floatValue * 20];
+            [currSlider setValue:score.floatValue];
             [currLabel setText:[sliders[i] objectForKey:@"category"]];
         }
     }
@@ -109,6 +112,43 @@
     [self.delegate reviewPopupWillDismiss];
 }
 
+/*
+ *  Yes pressed and networking is carried out, number updated
+ */
+
+-(IBAction)upvoteComment:(UIButton *)sender
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    NSDictionary *comment = [self findCommentForID:[NSNumber numberWithInt:sender.tag]];
+    NSNumber *score  = [comment objectForKey:@"score"];
+    score = [NSNumber numberWithInt:score.intValue + 1];
+    [manager PUT:[NSString stringWithFormat:(@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/%i/"), sender.tag ]
+      parameters:@{@"score": score}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"SUCCESS with response %@", responseObject);
+             [sender setTitle:[NSString stringWithFormat:(@"Yes! (%i agree)"), score.intValue]
+                                     forState:UIControlStateNormal];
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSLog(@"FAILED with operation %@", operation.responseString);
+         }];
+}
+
+#pragma mark - Miscellaneous
+
+/*
+ *  Finds a particular entree for a given id
+ */
+
+-(NSDictionary*)findCommentForID:(NSNumber*)commentID
+{
+    NSArray *commentArray = [self.reviewDictionary objectForKey:@"objects"];
+    for (NSDictionary *comment in commentArray)
+        if ([comment objectForKey:@"id"] == commentID)
+            return comment;
+    return nil;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

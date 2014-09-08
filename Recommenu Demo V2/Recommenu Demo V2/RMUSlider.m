@@ -22,8 +22,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.layer.borderColor =[UIColor grayColor].CGColor;
-//        self.layer.borderWidth = 1.0f;
     }
     return self;
 }
@@ -32,8 +30,6 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-//        self.layer.borderColor =[UIColor lightGrayColor].CGColor;
-//        self.layer.borderWidth = 1.0f;
         self.layer.cornerRadius = 4;
         self.layer.masksToBounds = YES;
         self.sliderHeight = HEIGHT_OF_SLIDER;
