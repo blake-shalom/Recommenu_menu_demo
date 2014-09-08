@@ -33,6 +33,12 @@
     self.visibleView.layer.masksToBounds = YES;
 }
 
+#pragma mark - Interactivity
+
+/*
+ *  Submit button is pressed, SOME NETWORKING IS GOING DOWN
+ */
+
 - (IBAction)submitPressed:(id)sender
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -45,7 +51,7 @@
                     @"date_posted": @"2014-07-28T18:48:29.241317",
                     @"entry": [NSString stringWithFormat:(@"/api/v1/entries/%li/"),(long)self.mealId.integerValue],
                     @"id": num,
-                    @"resource_uri": [NSString stringWithFormat:(@"/api/v1/recommendations/%li/"),self.mealId.integerValue + 2500],
+                    @"resource_uri": [NSString stringWithFormat:(@"/api/v1/recommendations/%i/"),self.mealId.integerValue + 2500],
                     @"score": @"18",
                     @"user": @"/api/v1/user_profile/107/"
                     }
@@ -62,6 +68,21 @@
               NSLog(@"FAILED with operation %@", operation.responseString);
           }];
 }
+
+/*
+ *  Dismisses popup!
+ */
+
+-(IBAction)cancelSubmitReview:(id)sender
+{
+    [self.delegate submitReviewReadyWillDismiss];
+}
+
+#pragma mark - UIAlertView Delegate
+
+/*
+ *  Call delegate after UIAlertView
+ */
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {

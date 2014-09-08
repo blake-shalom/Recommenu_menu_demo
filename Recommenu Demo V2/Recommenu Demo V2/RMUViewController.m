@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *menuCollectionView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 @property (weak, nonatomic) IBOutlet UIView *yellowSection;
+@property (weak, nonatomic) IBOutlet UIView *faderView;
+@property (weak, nonatomic) IBOutlet RMUReviewsPopupView *reviewPopup;
+@property (weak, nonatomic) IBOutlet RMUSubmitReviewView *submitPopup;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -43,6 +46,8 @@
     [self.menuCollectionView registerNib:[UINib nibWithNibName:@"RMUPicCollectionHeader" bundle:[NSBundle mainBundle]]
               forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"picCollectionView"];
     [self.yellowSection setBackgroundColor:[UIColor RMUSunglow]];
+    self.reviewPopup.delegate = self;
+    self.submitPopup.delegate = self;
     [self loadAllDishes];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -146,6 +151,7 @@
     else
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:(starAverage.integerValue +1) * 2];
     
+    [cell.topCommentLabel setText:[meal objectForKey:@"top_comment"]];
     NSNumber *priceNumber = [meal objectForKey:@"price"];
     if (priceNumber != (id) [NSNull null])
         [cell.priceLabel setText:[NSString stringWithFormat:(@"$%@"),priceNumber]];
@@ -259,6 +265,12 @@
     }
 }
 
+#pragma mark - Animations
+
+/*
+ *  Animates in the 
+ */
+
 #pragma mark - Interactivity
 
 /*
@@ -267,12 +279,39 @@
 
 - (IBAction)revealPopupView:(UIButton*)sender
 {
-    NSLog(@"REVEALED at index %li", (long)sender.tag);
+    [self.faderView setHidden:NO];
+    [self.reviewPopup setHidden:NO];
+    [self.reviewPopup loadAllReviewsWithEntreeID:[NSNumber numberWithInt:sender.tag]];
 }
 
 - (IBAction)revealWriteReviewView:(UIButton*)sender
 {
-    NSLog(@"REVEALED at index %li", (long)sender.tag);
+    [self.faderView setHidden:NO];
+    [self.submitPopup setHidden:NO];
+}
+
+#pragma mark - RMUReviewPopupDelegate
+
+/*
+ *  Gets rid of the fader and review popup
+ */
+
+-(void)reviewPopupWillDismiss
+{
+    [self.faderView setHidden:YES];
+    [self.reviewPopup setHidden:YES];
+}
+
+#pragma mark - RMUSubmitPopupDelegate
+
+/*
+ *  Gets rid of the fader and review popup
+ */
+
+-(void)submitReviewReadyWillDismiss
+{
+    [self.faderView setHidden:YES];
+    [self.submitPopup setHidden:YES];
 }
 
 @end

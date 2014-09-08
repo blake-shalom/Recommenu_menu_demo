@@ -10,6 +10,14 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RMURatingTableCell.h"
 
+@class RMUReviewsPopupView;
+
+@protocol RMUReviewsPopupDelegate
+
+- (void)reviewPopupWillDismiss;
+
+@end
+
 @interface RMUReviewsPopupView : UIView
 <UITableViewDataSource, UITableViewDelegate>
 
@@ -19,6 +27,9 @@
 
 // Data Structures
 @property NSDictionary *reviewDictionary;
+
+// Delegate
+@property (nonatomic,weak) id <RMUReviewsPopupDelegate> delegate;
 
 // Methods
 -(void)loadAllReviewsWithEntreeID:(NSNumber*)entreeID;

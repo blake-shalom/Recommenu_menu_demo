@@ -12,7 +12,10 @@
 #import "RMUHeaderCollectionView.h"
 #import "RMUPicCollectionView.h"
 #import "RMUStarView.h"
+#import "RMUSubmitReviewView.h"
+#import "RMUReviewsPopupView.h"
 
 @interface RMUViewController : UIViewController
-<UICollectionViewDataSource, UICollectionViewDelegate>
+<UICollectionViewDataSource, UICollectionViewDelegate,
+RMUReviewsPopupDelegate, RMUSubmitReviewDelegate>
 @end

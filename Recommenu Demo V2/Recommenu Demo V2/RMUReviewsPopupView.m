@@ -19,6 +19,12 @@
     return self;
 }
 
+#pragma mark - UITableView Delegate methods
+
+/*
+ *  Return number of rows
+ */
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.reviewDictionary) {
@@ -28,6 +34,10 @@
         return 0;
     }
 }
+
+/*
+ *  Cell For Row, loads data in cells
+ */
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -86,6 +96,17 @@
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);
          }];
+}
+
+#pragma mark - Interactivity
+
+/*
+ *  Dismisses popup
+ */
+
+-(IBAction)dismissReviewPopup:(id)sender
+{
+    [self.delegate reviewPopupWillDismiss];
 }
 
 /*
