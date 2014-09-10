@@ -37,6 +37,7 @@
 {
     UIButton *starButton = (UIButton*)sender;
     [self fillInNumberOfStarsWithNumberOfHalfStars:(starButton.tag + 1) * 2];
+    self.numStars = [NSNumber numberWithInt:starButton.tag + 1];
 }
 
 - (void)fillInNumberOfStarsWithNumberOfHalfStars:(NSInteger) numberOfHalfStars

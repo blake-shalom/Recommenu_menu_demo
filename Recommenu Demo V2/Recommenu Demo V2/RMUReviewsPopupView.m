@@ -104,13 +104,17 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
-      parameters:@{@"entry": entreeID}
+      parameters:@{@"entry": entreeID,
+                   @"checked": @1}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"SUCCESS with response %@", responseObject);
              self.reviewDictionary = responseObject;
+             [self.dishNameLabel setText:[[[[responseObject objectForKey:@"objects"] objectAtIndex:0] objectForKey:@"entry"] objectForKey:@"name"]];
              self.brandResponseExistArray = [NSMutableArray array];
              [self findBrandResponsesForDict];
              [self.reviewsTable reloadData];
+             [self.activityView setHidden:YES];
+             [self.reviewsTable setHidden:NO];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);

@@ -431,11 +431,11 @@
                                                                         <action selector="upvoteComment:" destination="YIE-ae-4MK" eventType="touchUpInside" id="y3b-hy-pc9"/>
                                                                     </connections>
                                                                 </button>
-                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-af-QMC">
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QCq-af-QMC" customClass="RMUBrandResponseView">
                                                                     <rect key="frame" x="1" y="248" width="277" height="109"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brand Response" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUn-jm-rmN">
+                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brand Response" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="KUn-jm-rmN">
                                                                             <rect key="frame" x="40" y="40" width="200" height="55"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
@@ -500,9 +500,14 @@
                                             <action selector="dismissReviewPopup:" destination="YIE-ae-4MK" eventType="touchUpInside" id="0aW-pb-W9o"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PVD-qX-hQF">
+                                        <rect key="frame" x="342" y="430" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="activityView" destination="PVD-qX-hQF" id="gpN-08-8VW"/>
                                     <outlet property="dishNameLabel" destination="Rt9-NW-blJ" id="TpG-Ty-CFQ"/>
                                     <outlet property="reviewsTable" destination="Z7C-ks-Cl3" id="Ge2-04-TTF"/>
                                 </connections>
@@ -661,8 +666,12 @@
                                 <connections>
                                     <outlet property="bottomFoodSlider" destination="Bru-pv-yFK" id="s2W-VP-cTf"/>
                                     <outlet property="commentTextField" destination="ckX-ya-aMu" id="Y6l-6P-8Qb"/>
+                                    <outlet property="emailTextField" destination="9vL-FC-Nwf" id="Rpf-O9-t4Z"/>
                                     <outlet property="middleFoodSlider" destination="LqB-4d-gPx" id="83N-xH-Wy6"/>
+                                    <outlet property="nicknameTextField" destination="kMb-B4-Vcv" id="05r-Hv-vZO"/>
+                                    <outlet property="starView" destination="YjT-OW-h0n" id="a3z-7h-b4O"/>
                                     <outlet property="submitButton" destination="jfO-6e-W84" id="ASt-Nj-dWt"/>
+                                    <outlet property="titleTextField" destination="5r8-I8-Biw" id="AwJ-Hi-E4i"/>
                                     <outlet property="topFoodSlider" destination="SsC-Fm-eu0" id="b49-y5-F11"/>
                                     <outlet property="visibleView" destination="vka-oD-LmT" id="aMj-Zi-1AR"/>
                                 </connections>

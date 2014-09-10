@@ -24,6 +24,7 @@
 // UI
 @property (weak,nonatomic) IBOutlet UITableView *reviewsTable;
 @property (weak,nonatomic) IBOutlet UILabel *dishNameLabel;
+@property (weak,nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 // Data Structures
 @property NSDictionary *reviewDictionary;

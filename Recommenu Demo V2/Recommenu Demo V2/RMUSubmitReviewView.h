@@ -11,6 +11,7 @@
 #import "RMUSlider.h"
 #import "RMUCurvedButton.h"
 #import "RMUCommentField.h"
+#import "RMUClickableStarView.h"
 
 @class RMUSubmitReviewView;
 
@@ -29,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet RMUCurvedButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIView *visibleView;
 @property (weak, nonatomic) IBOutlet RMUCommentField *commentTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nicknameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet RMUClickableStarView *starView;
 
 @property (nonatomic,weak) id <RMUSubmitReviewDelegate> delegate;
 

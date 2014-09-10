@@ -43,19 +43,25 @@
 
 - (IBAction)submitPressed:(id)sender
 {
+    NSString *comment = self.commentTextField.text;
+    NSString *title = self.titleTextField.text;
+    NSString *nickname = self.nicknameTextField.text;
+    NSNumber *numStars;
+    if (self.starView.numStars)
+        numStars = self.starView.numStars;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString *commentString = self.commentTextField.text;
-    NSNumber *num = [NSNumber numberWithLong:self.mealId.integerValue + 2500];
     [manager POST:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
        parameters:@{
-                    @"comment": commentString,
+                    @"comment": comment,
+                    @"title": title,
+                    @"nickname": nickname,
+                    @"stars": numStars,
+                    @"score": @"0.00",
+                    @"user": @"/api/v1/user/1/",
                     @"date_posted": @"2014-07-28T18:48:29.241317",
                     @"entry": [NSString stringWithFormat:(@"/api/v1/entries/%li/"),(long)self.mealId.integerValue],
-                    @"id": num,
-                    @"resource_uri": [NSString stringWithFormat:(@"/api/v1/recommendations/%i/"),self.mealId.integerValue + 2500],
-                    @"score": @"18",
-                    @"user": @"/api/v1/user_profile/107/"
                     }
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSLog(@"SUCCESS with response %@", responseObject);
@@ -70,7 +76,7 @@
               NSLog(@"FAILED with operation %@", operation.responseString);
           }];
 }
-
+// {"approved": 1, "checked": 1, "comment": "", "date_posted": "2014-09-03T18:29:26.837659", "entry": "/api/v1/entries/1/", "id": 1, "nickname": "Bob2325", "sliders": [], "title": "", "user": "/api/v1/user/1/" , "stars": 4.5, "score": 0.0}
 /*
  *  Dismisses popup!
  */

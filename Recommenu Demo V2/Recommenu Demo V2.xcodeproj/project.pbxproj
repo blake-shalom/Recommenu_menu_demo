@@ -37,6 +37,7 @@
 		9DE11C1319AA778700B07B21 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDF19A6583100B07B21 /* Main_iPad.storyboard */; };
 		9DE11C1419AA77C100B07B21 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE11BDC19A6583100B07B21 /* Main_iPhone.storyboard */; };
 		9DE11C1919AB756000B07B21 /* RMUStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DE11C1819AB756000B07B21 /* RMUStarView.m */; };
+		9DFE893619C0006700F3DEE5 /* RMUBrandResponseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE893519C0006700F3DEE5 /* RMUBrandResponseView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUPicCollectionView.m; sourceTree = "<group>"; };
 		9DE11C1719AB756000B07B21 /* RMUStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUStarView.h; sourceTree = "<group>"; };
 		9DE11C1819AB756000B07B21 /* RMUStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUStarView.m; sourceTree = "<group>"; };
+		9DFE893419C0006700F3DEE5 /* RMUBrandResponseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMUBrandResponseView.h; sourceTree = "<group>"; };
+		9DFE893519C0006700F3DEE5 /* RMUBrandResponseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMUBrandResponseView.m; sourceTree = "<group>"; };
 		D0498654AEFB40A9BAB523F8 /* Pods-Recommenu Demo V2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommenu Demo V2.xcconfig"; path = "../Pods/Pods-Recommenu Demo V2.xcconfig"; sourceTree = "<group>"; };
 		E0EC1A491B4B4C10B4A0F81D /* libPods-Recommenu Demo V2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recommenu Demo V2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 			children = (
 				9DE11C1719AB756000B07B21 /* RMUStarView.h */,
 				9DE11C1819AB756000B07B21 /* RMUStarView.m */,
+				9DFE893419C0006700F3DEE5 /* RMUBrandResponseView.h */,
+				9DFE893519C0006700F3DEE5 /* RMUBrandResponseView.m */,
 				9DE11C1019AA402600B07B21 /* RMUPicCollectionView.h */,
 				9DE11C1119AA402600B07B21 /* RMUPicCollectionView.m */,
 				9DE11C0519A6A7CF00B07B21 /* RMUHeaderCollectionView.h */,
@@ -400,6 +405,7 @@
 				9D97B50419ABC61D00188479 /* RMUSlider.m in Sources */,
 				9D97B51619AF92BA00188479 /* RMUCurvedButton.m in Sources */,
 				9DE11BDB19A6583100B07B21 /* RMUAppDelegate.m in Sources */,
+				9DFE893619C0006700F3DEE5 /* RMUBrandResponseView.m in Sources */,
 				9D97B51019ABE02700188479 /* RMUReviewsPopupView.m in Sources */,
 				9D97B51C19AF92E600188479 /* RMUEditableSlider.m in Sources */,
 				9DE11C0719A6A7CF00B07B21 /* RMUHeaderCollectionView.m in Sources */,

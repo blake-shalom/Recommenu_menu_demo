@@ -10,4 +10,6 @@
 
 @interface RMUClickableStarView : RMUStarView
 
+@property NSNumber *numStars;
+
 @end

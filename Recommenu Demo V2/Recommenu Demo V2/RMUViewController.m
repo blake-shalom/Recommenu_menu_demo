@@ -280,7 +280,10 @@
 - (IBAction)revealPopupView:(UIButton*)sender
 {
     [self.faderView setHidden:NO];
+    [self.reviewPopup.dishNameLabel setText:@""];
     [self.reviewPopup setHidden:NO];
+    [self.reviewPopup.reviewsTable setHidden:YES];
+    [self.reviewPopup.activityView setHidden:NO];
     [self.reviewPopup loadAllReviewsWithEntreeID:[NSNumber numberWithInt:sender.tag]];
 }
 
