@@ -8,6 +8,8 @@
 
 #import "RMUReviewsPopupView.h"
 
+#warning STILLL NEED TO LOAD BRAND RESPONSE
+
 @implementation RMUReviewsPopupView
 
 - (id)initWithFrame:(CGRect)frame
@@ -20,6 +22,19 @@
 }
 
 #pragma mark - UITableView Delegate methods
+
+/*
+ *  Height for row, either one of two pixel heights
+ */
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSNumber *doesBrandResponseExist = self.brandResponseExistArray[indexPath.row];
+    if (doesBrandResponseExist.boolValue)
+        return 384.0f;
+    else
+        return 240.0f;
+}
 
 /*
  *  Return number of rows
@@ -48,8 +63,7 @@
     
     if ([commentDict objectForKey:@"score"] != (id) [NSNull null]) {
         NSNumber *numb = [commentDict objectForKey:@"score"];
-        [reviewCell.agreeButton setTitle:[NSString stringWithFormat:(@"Yes! (%i agree)"), numb.intValue]
-                                forState:UIControlStateNormal];
+        [reviewCell.numLikes setText:[NSString stringWithFormat:(@"(%i)"), numb.intValue]];
     }
     if ([commentDict objectForKey:@"comment"] != (id) [NSNull null])
         [reviewCell.reviewParagraph setText:[commentDict objectForKey:@"comment"]];
@@ -94,6 +108,8 @@
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"SUCCESS with response %@", responseObject);
              self.reviewDictionary = responseObject;
+             self.brandResponseExistArray = [NSMutableArray array];
+             [self findBrandResponsesForDict];
              [self.reviewsTable reloadData];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -123,12 +139,12 @@
     NSDictionary *comment = [self findCommentForID:[NSNumber numberWithInt:sender.tag]];
     NSNumber *score  = [comment objectForKey:@"score"];
     score = [NSNumber numberWithInt:score.intValue + 1];
+    RMURatingTableCell *tableCell = (RMURatingTableCell*) sender.superview.superview.superview;
     [manager PUT:[NSString stringWithFormat:(@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/%i/"), sender.tag ]
       parameters:@{@"score": score}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"SUCCESS with response %@", responseObject);
-             [sender setTitle:[NSString stringWithFormat:(@"Yes! (%i agree)"), score.intValue]
-                                     forState:UIControlStateNormal];
+             [tableCell.numLikes setText:[NSString stringWithFormat:(@"(%i)"), score.intValue]];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);
@@ -148,6 +164,22 @@
         if ([comment objectForKey:@"id"] == commentID)
             return comment;
     return nil;
+}
+
+/*
+ *  Fills dictionary of id matched with if it contains a brand response or not
+ */
+
+-(void)findBrandResponsesForDict
+{
+    NSArray *commentArray = [self.reviewDictionary objectForKey:@"objects"];
+    for (NSDictionary *comment in commentArray) {
+        NSArray *brandResponse = [comment objectForKey:@"brand_responses"];
+        if (brandResponse.count == 0)
+            [self.brandResponseExistArray addObject:[NSNumber numberWithBool:NO]];
+        else
+            [self.brandResponseExistArray addObject:[NSNumber numberWithBool:YES]];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

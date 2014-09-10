@@ -27,6 +27,7 @@
 
 // Data Structures
 @property NSDictionary *reviewDictionary;
+@property NSMutableArray *brandResponseExistArray;
 
 // Delegate
 @property (nonatomic,weak) id <RMUReviewsPopupDelegate> delegate;

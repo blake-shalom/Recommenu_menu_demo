@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *reviewParagraph;
 @property (weak, nonatomic) IBOutlet UILabel *reviewTitle;
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
+@property (weak, nonatomic) IBOutlet UILabel *numLikes;
 
 @end

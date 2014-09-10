@@ -151,7 +151,7 @@
     else
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:(starAverage.integerValue +1) * 2];
     
-    [cell.topCommentLabel setText:[meal objectForKey:@"top_comment"]];
+    [cell.topCommentLabel setText:[NSString stringWithFormat:(@"\"%@...\""),[meal objectForKey:@"top_comment"]]];
     NSNumber *priceNumber = [meal objectForKey:@"price"];
     if (priceNumber != (id) [NSNull null])
         [cell.priceLabel setText:[NSString stringWithFormat:(@"$%@"),priceNumber]];
