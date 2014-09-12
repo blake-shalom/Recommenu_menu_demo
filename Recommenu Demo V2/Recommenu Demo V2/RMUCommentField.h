@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RMUCommentField : UITextField
+@interface RMUCommentField : UITextView
 
 @end

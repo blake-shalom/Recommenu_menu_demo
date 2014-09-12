@@ -36,7 +36,7 @@
 #pragma mark - Interactivity
 
 #warning NEED TO FINISH POST CALL
-
+#warning EMAIL IS NOT USED!!!!!!
 /*
  *  Submit button is pressed, SOME NETWORKING IS GOING DOWN
  */
@@ -46,37 +46,89 @@
     NSString *comment = self.commentTextField.text;
     NSString *title = self.titleTextField.text;
     NSString *nickname = self.nicknameTextField.text;
+    NSString *email = self.emailTextField.text;
     NSNumber *numStars;
-    if (self.starView.numStars)
+    if ([comment isEqualToString:@""] || [title isEqualToString:@""] ||
+        [nickname isEqualToString:@""] || [email isEqualToString:@""] ||
+        (!self.starView.numStars)) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Please Fill Out all forms!"
+                                                       message:@"Comment Will be posted when all forms are filled."
+                                                      delegate:self
+                                             cancelButtonTitle:@"Done"
+                                             otherButtonTitles: nil];
+        alert.tag = 1;
+        [alert show];
+    }
+    else {
         numStars = self.starView.numStars;
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
-       parameters:@{
-                    @"comment": comment,
-                    @"title": title,
-                    @"nickname": nickname,
-                    @"stars": numStars,
-                    @"score": @"0.00",
-                    @"user": @"/api/v1/user/1/",
-                    @"date_posted": @"2014-07-28T18:48:29.241317",
-                    @"entry": [NSString stringWithFormat:(@"/api/v1/entries/%li/"),(long)self.mealId.integerValue],
-                    }
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              NSLog(@"SUCCESS with response %@", responseObject);
-              UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Thank You!"
-                                                             message:@"Thanks for posting!"
-                                                            delegate:self
-                                                   cancelButtonTitle:@"Done"
-                                                   otherButtonTitles: nil];
-              [alert show];
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              NSLog(@"FAILED with operation %@", operation.responseString);
-          }];
+        NSNumberFormatter *decimalStyleFormatter = [[NSNumberFormatter alloc] init];
+        [decimalStyleFormatter setMaximumFractionDigits:1];
+        NSNumber *number = [decimalStyleFormatter numberFromString:[NSString stringWithFormat:(@"%f"), numStars.floatValue]];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        [dateFormatter setLocale:enUSPOSIXLocale];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+        NSDate *currentDate = [NSDate date];
+        NSString *dateString = [dateFormatter stringFromDate:currentDate];
+        NSMutableArray *sliderArray = [NSMutableArray array];
+        for (int i = 0; i < 3; i++) {
+            RMUSlider *currSlider = (RMUSlider*) [self viewWithTag:i + 5];
+            UILabel *currLabel = (UILabel*) [self viewWithTag:i + 8];
+            if (!currLabel.isHidden){
+                NSNumberFormatter *decimalStyleFormatter = [[NSNumberFormatter alloc] init];
+                [decimalStyleFormatter setMaximumFractionDigits:1];
+                [decimalStyleFormatter setMinimumFractionDigits:1];
+                NSNumber *sliderNum = [decimalStyleFormatter numberFromString:[NSString stringWithFormat:(@"%f"), currSlider.value]];
+                NSLog(@"%@", sliderNum);
+                NSDictionary *slider = @{@"category": currLabel.text,
+                                         @"score": sliderNum,
+                                         @"slider_template": self.templateArray[i]};
+                [sliderArray addObject:slider];
+            }
+            else {
+                break;
+            }
+        }
+
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager POST:@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/"
+           parameters:@{
+                        @"comment": comment,
+                        @"title": title,
+                        @"nickname": nickname,
+                        @"stars": number,
+                        @"score": @"0.0",
+                        @"user": @"/api/v1/user/1/",
+                        @"date_posted": dateString,
+                        @"entry": [NSString stringWithFormat:(@"/api/v1/entries/%li/"),(long)self.mealId.integerValue],
+                        @"sliders": sliderArray
+                        }
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSLog(@"SUCCESS with response %@", responseObject);
+                  UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Thank You!"
+                                                                 message:@"Thanks for posting!"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Done"
+                                                       otherButtonTitles: nil];
+                  alert.tag = 0;
+                  [alert show];
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  NSLog(@"%@", operation.request.URL);
+                  NSLog(@"FAILED with operation %@", operation.responseString);
+                  UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Thank You!"
+                                                                 message:@"Thanks for posting!"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"Done"
+                                                       otherButtonTitles: nil];
+                  alert.tag = 0;
+                  [alert show];
+              }];
+        
+    }
 }
-// {"approved": 1, "checked": 1, "comment": "", "date_posted": "2014-09-03T18:29:26.837659", "entry": "/api/v1/entries/1/", "id": 1, "nickname": "Bob2325", "sliders": [], "title": "", "user": "/api/v1/user/1/" , "stars": 4.5, "score": 0.0}
 /*
  *  Dismisses popup!
  */
@@ -94,7 +146,36 @@
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [self.delegate submitReviewReadyWillDismiss];
+    if (alertView.tag == 0)
+        [self.delegate submitReviewReadyWillDismiss];
+}
+
+-(void)loadSlidersWithSliderArray:(NSArray*)sliderArray
+{
+    self.templateArray = [NSMutableArray array];
+    for (int i = 0; i < 3; i++) {
+        RMUSlider *currSlider = (RMUSlider*) [self viewWithTag:i + 5];
+        UILabel *currLabel = (UILabel*) [self viewWithTag:i + 8];
+        if (i < sliderArray.count) {
+            [currLabel setHidden:NO];
+            [currSlider setHidden:NO];
+            [currLabel setText:[sliderArray[i] objectForKey:@"category"]];
+            [self.templateArray addObject:[sliderArray[i] objectForKey:@"resource_uri"]];
+        }
+        else {
+            [currLabel setHidden:YES];
+            [currSlider setHidden:YES];
+        }
+    }
+}
+
+-(void)clearAllTextFields
+{
+    self.commentTextField.text = @"";
+    self.titleTextField.text = @"";
+    self.nicknameTextField.text = @"";
+    self.emailTextField.text = @"";
+    [self.starView fillInNumberOfStarsWithNumberOfHalfStars:0];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

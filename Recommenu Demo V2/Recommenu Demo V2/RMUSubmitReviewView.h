@@ -34,9 +34,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet RMUClickableStarView *starView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (nonatomic,weak) id <RMUSubmitReviewDelegate> delegate;
 
 @property NSNumber *mealId;
+@property NSMutableArray *templateArray;
+
+// Public Methods
+-(void)loadSlidersWithSliderArray:(NSArray*)sliderArray;
+-(void)clearAllTextFields;
 
 @end

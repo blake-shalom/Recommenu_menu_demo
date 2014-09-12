@@ -8,7 +8,6 @@
 
 #import "RMUReviewsPopupView.h"
 
-#warning STILLL NEED TO LOAD BRAND RESPONSE
 
 @implementation RMUReviewsPopupView
 
@@ -60,6 +59,16 @@
     NSDictionary *commentDict = [[self.reviewDictionary objectForKey:@"objects"]objectAtIndex:indexPath.row];
     NSNumber *commentID = [commentDict objectForKey:@"id"];
     reviewCell.agreeButton.tag = commentID.intValue;
+    NSNumber *doesBrandResponseExist = self.brandResponseExistArray[indexPath.row];
+    if (doesBrandResponseExist.boolValue){
+        NSDictionary *brandResponse = [[commentDict objectForKey:@"brand_responses"] objectAtIndex:0];
+        NSString *dateString = [brandResponse objectForKey:@"date_posted"];
+        dateString = [dateString substringToIndex:10];
+        dateString = [dateString stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+        [reviewCell.brandResponderLabel setText:[NSString stringWithFormat:(@"%@ replied on %@"),[brandResponse objectForKey:@"responder"],dateString]];
+        [reviewCell.brandResponseLabel setText:[brandResponse objectForKey:@"comment"]];
+
+    }
     
     if ([commentDict objectForKey:@"score"] != (id) [NSNull null]) {
         NSNumber *numb = [commentDict objectForKey:@"score"];

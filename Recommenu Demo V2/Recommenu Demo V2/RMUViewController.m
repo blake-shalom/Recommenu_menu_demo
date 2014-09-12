@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *faderView;
 @property (weak, nonatomic) IBOutlet RMUReviewsPopupView *reviewPopup;
 @property (weak, nonatomic) IBOutlet RMUSubmitReviewView *submitPopup;
+@property (weak, nonatomic) IBOutlet UIButton *dismissKeyboardButton;
 
 // Data Structures
 @property NSDictionary *menuDictionary;
@@ -41,6 +42,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+
     UICollectionViewFlowLayout *collectionViewLayout = (UICollectionViewFlowLayout*)self.menuCollectionView.collectionViewLayout;
     collectionViewLayout.sectionInset = UIEdgeInsetsMake(13, 0, 13, 0);
     [self.menuCollectionView registerNib:[UINib nibWithNibName:@"RMUPicCollectionHeader" bundle:[NSBundle mainBundle]]
@@ -271,6 +277,16 @@
  *  Animates in the 
  */
 
+- (void)keyboardDidShow: (NSNotification *) notif
+{
+    [self.dismissKeyboardButton setHidden:NO];
+}
+
+- (IBAction)dismissButtonTouched:(id)sender
+{
+    [self.view endEditing:YES];
+    [self.dismissKeyboardButton setHidden:YES];
+}
 #pragma mark - Interactivity
 
 /*
@@ -284,12 +300,18 @@
     [self.reviewPopup setHidden:NO];
     [self.reviewPopup.reviewsTable setHidden:YES];
     [self.reviewPopup.activityView setHidden:NO];
-    [self.reviewPopup loadAllReviewsWithEntreeID:[NSNumber numberWithInt:sender.tag]];
+    [self.reviewPopup loadAllReviewsWithEntreeID:[NSNumber numberWithLong:sender.tag]];
 }
 
 - (IBAction)revealWriteReviewView:(UIButton*)sender
 {
     [self.faderView setHidden:NO];
+    NSNumber *mealID = [NSNumber numberWithLong:sender.tag];
+    self.submitPopup.mealId = mealID;
+    NSDictionary *meal = [self findEntreeForId:mealID];
+    [self.submitPopup.titleLabel setText:[NSString stringWithFormat:(@"What did you think of %@"),[meal objectForKey:@"name"]]];
+    [self.submitPopup loadSlidersWithSliderArray:[meal objectForKey:@"slider_templates"]];
+    [self.submitPopup clearAllTextFields];
     [self.submitPopup setHidden:NO];
 }
 
@@ -315,6 +337,31 @@
 {
     [self.faderView setHidden:YES];
     [self.submitPopup setHidden:YES];
+}
+
+#pragma mark - Miscellaneous
+
+/*
+ *  Passes slider dict to the submit popup
+ */
+
+-(NSDictionary*)findEntreeForId:(NSNumber*)commentID
+{
+    NSArray *courseArray = [[[self.menuDictionary objectForKey:@"objects"]objectAtIndex:0]objectForKey:@"sections"];
+    for (NSDictionary *course in courseArray) {
+        NSArray *meals = [course objectForKey:@"entries"];
+        for (NSDictionary *meal in meals) {
+            if (commentID == [meal objectForKey:@"id"]) {
+                return meal;
+            }
+        }
+    }
+    return nil;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 @end
