@@ -24,12 +24,15 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self setThumbImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
-        self.layer.cornerRadius = 4;
-
+        
     }
     return self;
 }
 
+- (CGRect)trackRectForBounds:(CGRect)bounds
+{
+    return [super trackRectForBounds:bounds];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

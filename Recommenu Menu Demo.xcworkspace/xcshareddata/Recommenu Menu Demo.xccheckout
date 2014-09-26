@@ -12,20 +12,24 @@
 	<dict>
 		<key>9FDDF108-3DD7-46EC-972F-C88735FF6F4C</key>
 		<string>https://bitbucket.org/Recommenu-Dev/recommenu-mobile-demo-v1.git</string>
+		<key>F6309985CAE127724B40B5B6A20A5AE60E8452B0</key>
+		<string>https://bitbucket.org/Recommenu-Dev/recommenu-mobile-demo-v1.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Recommenu Menu Demo.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9FDDF108-3DD7-46EC-972F-C88735FF6F4C</key>
+		<string>../../Recommenu Menu Demo</string>
+		<key>F6309985CAE127724B40B5B6A20A5AE60E8452B0</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://bitbucket.org/Recommenu-Dev/recommenu-mobile-demo-v1.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9FDDF108-3DD7-46EC-972F-C88735FF6F4C</string>
+	<string>F6309985CAE127724B40B5B6A20A5AE60E8452B0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>9FDDF108-3DD7-46EC-972F-C88735FF6F4C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Recommenu Menu Demo</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F6309985CAE127724B40B5B6A20A5AE60E8452B0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Recommenu%20Menu%20Demo</string>
 		</dict>
 	</array>
 </dict>

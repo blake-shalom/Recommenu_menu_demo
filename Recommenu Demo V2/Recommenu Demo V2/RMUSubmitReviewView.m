@@ -35,7 +35,6 @@
 
 #pragma mark - Interactivity
 
-#warning NEED TO FINISH POST CALL
 #warning EMAIL IS NOT USED!!!!!!
 /*
  *  Submit button is pressed, SOME NETWORKING IS GOING DOWN
@@ -116,8 +115,10 @@
                   [alert show];
               }
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  NSLog(@"%@", operation.request.URL);
+                  NSLog(@"Request body %@", [[NSString alloc] initWithData:[operation.request HTTPBody] encoding:NSUTF8StringEncoding]);
+                  NSLog(@"%@", operation.request);
                   NSLog(@"FAILED with operation %@", operation.responseString);
+                  
                   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Thank You!"
                                                                  message:@"Thanks for posting!"
                                                                 delegate:self
@@ -159,7 +160,8 @@
         if (i < sliderArray.count) {
             [currLabel setHidden:NO];
             [currSlider setHidden:NO];
-            [currLabel setText:[sliderArray[i] objectForKey:@"category"]];
+            NSString *sliderText = [sliderArray[i] objectForKey:@"category"];
+            [currLabel setText:sliderText];
             [self.templateArray addObject:[sliderArray[i] objectForKey:@"resource_uri"]];
         }
         else {
@@ -176,6 +178,10 @@
     self.nicknameTextField.text = @"";
     self.emailTextField.text = @"";
     [self.starView fillInNumberOfStarsWithNumberOfHalfStars:0];
+    for (int i = 0; i < 3; i++) {
+        RMUSlider *currSlider = (RMUSlider*) [self viewWithTag:i + 5];
+        [currSlider setValue:50.0f];
+    }
 }
 /*
 // Only override drawRect: if you perform custom drawing.

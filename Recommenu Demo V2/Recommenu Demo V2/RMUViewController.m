@@ -150,7 +150,7 @@
 
     CGFloat starFloat = starAverage.floatValue;
     CGFloat starRemain = fmodf(starFloat, 1);
-    if (starRemain < 0.33f)
+    if (starRemain < 0.34f)
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2];
     else if (starRemain < 0.67f)
         [cell.starView fillInNumberOfStarsWithNumberOfHalfStars:starAverage.integerValue * 2 + 1];
@@ -309,7 +309,7 @@
     NSNumber *mealID = [NSNumber numberWithLong:sender.tag];
     self.submitPopup.mealId = mealID;
     NSDictionary *meal = [self findEntreeForId:mealID];
-    [self.submitPopup.titleLabel setText:[NSString stringWithFormat:(@"What did you think of %@"),[meal objectForKey:@"name"]]];
+    [self.submitPopup.titleLabel setText:[NSString stringWithFormat:(@"What did you think of %@?"),[meal objectForKey:@"name"]]];
     [self.submitPopup loadSlidersWithSliderArray:[meal objectForKey:@"slider_templates"]];
     [self.submitPopup clearAllTextFields];
     [self.submitPopup setHidden:NO];

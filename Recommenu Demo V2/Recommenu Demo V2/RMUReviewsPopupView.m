@@ -149,15 +149,16 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSDictionary *comment = [self findCommentForID:[NSNumber numberWithInt:sender.tag]];
+    NSDictionary *comment = [self findCommentForID:[NSNumber numberWithLong:sender.tag]];
     NSNumber *score  = [comment objectForKey:@"score"];
     score = [NSNumber numberWithInt:score.intValue + 1];
-    RMURatingTableCell *tableCell = (RMURatingTableCell*) sender.superview.superview.superview;
-    [manager PUT:[NSString stringWithFormat:(@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/%i/"), sender.tag ]
+    RMURatingTableCell *tableCell = (RMURatingTableCell*) sender.superview.superview;
+    NSLog(@"table cell class: %@", tableCell.class);
+    [tableCell.numLikes setText:[NSString stringWithFormat:(@"(%i)"), score.intValue]];
+    [manager PUT:[NSString stringWithFormat:(@"http://tranquil-plateau-8131.herokuapp.com/api/v1/recommendations/%li/"), (long)sender.tag ]
       parameters:@{@"score": score}
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"SUCCESS with response %@", responseObject);
-             [tableCell.numLikes setText:[NSString stringWithFormat:(@"(%i)"), score.intValue]];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              NSLog(@"FAILED with operation %@", operation.responseString);
